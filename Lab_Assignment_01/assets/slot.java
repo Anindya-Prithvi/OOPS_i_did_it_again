@@ -1,11 +1,11 @@
 package Lab_Assignment_01.assets;
 
-public class slot {
+public class Slot {
     private final int day;
     private final Vaccine vaccine;
     private int available_quantity;
 
-    public slot(int day, Vaccine vaccine, int available_quantity){
+    public Slot(int day, Vaccine vaccine, int available_quantity){
         this.day = day;
         this.vaccine = vaccine;
         this.available_quantity = available_quantity;
@@ -21,5 +21,10 @@ public class slot {
 
     public String getVaccine() {
         return vaccine.getName();
+    }
+
+    public void used_vaccine() {
+        --available_quantity;
+        return;
     }
 }
