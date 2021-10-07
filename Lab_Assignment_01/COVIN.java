@@ -1,3 +1,4 @@
+package Lab_Assignment_01;
 public class COVIN{
     public static void main(String[] args){
         //initialize portal
