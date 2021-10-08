@@ -44,8 +44,8 @@ public class COVIN{
         try {
             choice = sc.nextLine();            
         } catch (Exception e) {
-            System.out.println("Unprecedented STDIN");
-            return false;
+            System.out.println("Unprecedented EOF");
+            return true;
         }
         int _choice_int;
         try {
