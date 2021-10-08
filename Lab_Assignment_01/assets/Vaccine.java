@@ -13,13 +13,11 @@ public class Vaccine {
         this.gap_doses = gap_doses;
     }
 
-    public static void add_vaccine(ArrayList<Vaccine> vaccines){
-        
+    public static void add_vaccine(ArrayList<Vaccine> vaccines, java.util.Scanner sc){        
     // Vaccine Name: Covax
     // Number of Doses: 2
     // Gap between Doses: 2
     // Vaccine Name: Covax, Number of Doses: 2, Gap Between Doses: 2
-        java.util.Scanner sc = new java.util.Scanner(System.in);
         //sc.closed in COVIN
         Vaccine newvaccine;
         try {

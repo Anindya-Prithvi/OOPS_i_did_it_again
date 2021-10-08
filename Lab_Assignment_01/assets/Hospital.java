@@ -16,11 +16,10 @@ public class Hospital {
         if(validate(this)){++id_int;}
     }
 
-    public static void add_hospital(ArrayList<Hospital> hospitals){
+    public static void add_hospital(ArrayList<Hospital> hospitals, java.util.Scanner sc){
         // Hospital Name: Medistar
         // PinCode: 110091
         // Hospital Name: Medistar, PinCode: 110091, Unique ID: 123456
-        java.util.Scanner sc = new java.util.Scanner(System.in);
         // sc closed in COVIN
         Hospital newhospital;
         try {

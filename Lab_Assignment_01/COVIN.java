@@ -23,22 +23,23 @@ public class COVIN{
     private static ArrayList<Vaccine> vaccines; //multiple instances of COVIN
     private static ArrayList<Hospital> hospitals; //multiple instances of COVIN
     private static ArrayList<Citizen> citizens; //multiple instances of COVIN
-
+    private static Scanner sc;
     public static void main(String[] args){
         //initialize portal
         vaccines = new ArrayList<Vaccine>();
         hospitals = new ArrayList<Hospital>();
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         System.out.print("COVIN Portal Initialized...\n");
         //main loop
         while(true){
             System.out.print(menu);
-            if(choice_handler(sc.nextLine())) break;
+            if(choice_handler(sc)) break;
         }
         sc.close();
     }
 
-    public static boolean choice_handler(String choice){
+    public static boolean choice_handler(Scanner sc){
+        String choice = sc.nextLine();
         int _choice_int;
         try {
             _choice_int = Integer.parseInt(choice);
@@ -53,11 +54,11 @@ public class COVIN{
         }
         switch (_choice_int) {//resolution: All constructors will have Scanners to make objects
             case 1:
-                Vaccine.add_vaccine(vaccines);
+                Vaccine.add_vaccine(vaccines, sc);
                 break;
 
             case 2:
-                Hospital.add_hospital(hospitals);
+                Hospital.add_hospital(hospitals, sc);
         
             default:
                 break;
