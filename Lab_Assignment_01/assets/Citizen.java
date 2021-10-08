@@ -77,8 +77,13 @@ public class Citizen {
         return true;
     }
 
-    public void book_slot(Slot slot){
+    public static void book_slot(ArrayList<Hospital> hospitals, ArrayList<Citizen> citizens, java.util.Scanner sc){
         //may add error handling (not req) if out of vacc
-        slot.used_vaccine();
+        //slot.used_vaccine();
+        //TODO
+    }
+
+    public static void check_vaccination_status(ArrayList<Citizen> citizens, java.util.Scanner sc){
+        //TODO
     }
 }

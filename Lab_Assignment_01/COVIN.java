@@ -28,6 +28,7 @@ public class COVIN{
         //initialize portal
         vaccines = new ArrayList<Vaccine>();
         hospitals = new ArrayList<Hospital>();
+        citizens = new ArrayList<Citizen>();
         sc = new Scanner(System.in);
         System.out.print("COVIN Portal Initialized...\n");
         //main loop
@@ -63,6 +64,23 @@ public class COVIN{
 
             case 3:
                 Citizen.add_citizen(citizens, sc);
+                break;
+
+            case 4:
+                Hospital.add_slots(hospitals, sc);
+                break;
+
+            case 5:
+                Citizen.book_slot(hospitals, citizens, sc);
+                break;
+
+            case 6:
+                Hospital.list_slots(hospitals, sc);
+                break;
+            
+            case 7:
+                Citizen.check_vaccination_status(citizens, sc);
+                break;
         
             default:
                 break;

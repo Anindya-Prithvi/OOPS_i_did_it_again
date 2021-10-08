@@ -76,10 +76,14 @@ public class Hospital {
         return huid;
     }
 
-    public void addslots() {
+    public static void add_slots(ArrayList<Hospital> hospitals, java.util.Scanner sc) {
         //maybe a slot array is passed here
         //count slots then add each
         //TODO
         //hospitals might need access to edit their slots (IRL)
+    }
+
+    public static void list_slots(ArrayList<Hospital> hospitals, java.util.Scanner sc){
+        //TODO
     }
 }
