@@ -136,6 +136,7 @@ public class Hospital {
             for(Slot i : hospital.slots){
                 i.show_slot_by_huid();
             }
+            if(hospital.slots.size()==0){System.out.println("No Slots were found.");}
         } catch (Exception e) {
             System.out.println("Erroneous input");
             return;
