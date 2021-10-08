@@ -60,9 +60,9 @@ public class Vaccine {
             .concat(String.valueOf(newvaccine.gap_doses));
     }
 
-    public int getGap_doses() {
-        return gap_doses;
-    }
+    // public int getGap_doses() {
+    //     return gap_doses;
+    // }
 
     private static boolean validate(Vaccine vaccine, ArrayList<Vaccine> vaccines) {
         //duplicacy :)
@@ -70,23 +70,23 @@ public class Vaccine {
         for(Vaccine j: vaccines){
             if(j.name.equals(vaccine.name)) return false;
         }
-        return (((vaccine.getNum_doses()<1)||(vaccine.gap_doses<0))?false: true);
+        return (((vaccine.num_doses<1)||(vaccine.gap_doses<0))?false: true);
     }
 
     public String getName() {
         return name;
     }
 
-    public int getNum_doses() {
-        return num_doses;
-    }
+    // public int getNum_doses() {
+    //     return num_doses;
+    // }
 
     public static Vaccine chooseVaccine(ArrayList<Vaccine> vaccines, java.util.Scanner sc){
         if(vaccines.size()==0){System.out.println("No Vaccines added");return null;}
         int i = 0;
         System.out.println("Select Vaccine");
         for(Vaccine j:vaccines){
-            System.out.println(i+". "+j.getName());
+            System.out.println(i+". "+j.name);
             ++i;
         }
         try {

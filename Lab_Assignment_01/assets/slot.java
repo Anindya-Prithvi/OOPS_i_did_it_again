@@ -13,26 +13,26 @@ public class Slot {
         this.hospital_id = hospital_id;
     }
 
-    public int getAvailable_quantity() {
-        return available_quantity;
-    }
+    // public int getAvailable_quantity() {
+    //     return available_quantity;
+    // }
 
-    public int getDay() {
-        return day;
-    }
+    // public int getDay() {
+    //     return day;
+    // }
 
-    public String getVaccine() {
-        return vaccine.getName();
-    }
+    // public String getVaccine() {
+    //     return vaccine.getName();
+    // }
 
     public void used_vaccine() {
         --available_quantity;
         return;
     }
 
-    public char[] getHospital_id() {
-        return hospital_id;
-    }
+    // public char[] getHospital_id() {
+    //     return hospital_id;
+    // }
 
     public void show_slot(){
         //Slot added by Hospital 123456 for Day: 1, Available Quantity: 5 of Vaccine Covax

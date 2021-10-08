@@ -73,17 +73,17 @@ public class Hospital {
         return huid;
     }
 
-    public String getName() {
-        return name;
-    }
+    // public String getName() {
+    //     return name;
+    // }
 
-    public char[] getPincode() {
-        return pincode;
-    }
+    // public char[] getPincode() {
+    //     return pincode;
+    // }
 
-    public String getHuid() {
-        return new String(huid);
-    }
+    // public String getHuid() {
+    //     return new String(huid);
+    // }
 
     public static void add_slots(ArrayList<Hospital> hospitals, ArrayList<Vaccine> vaccines, java.util.Scanner sc) {
         // Enter Hospital ID: 123456
@@ -124,7 +124,7 @@ public class Hospital {
 
     private static Hospital search_by_huid(ArrayList<Hospital> hospitals, char[] huid){
         for(Hospital j: hospitals){
-            if(j.getHuid().equals(new String(huid))){
+            if((new String(j.huid)).equals(new String(huid))){
                 return j;
             }
         }

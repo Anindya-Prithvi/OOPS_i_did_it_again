@@ -68,17 +68,17 @@ public class Citizen {
     }
 
 
-    public int getAge() {
-        return age;
-    }
+    // public int getAge() {
+    //     return age;
+    // }
 
-    public String getName() {
-        return name;
-    }
+    // public String getName() {
+    //     return name;
+    // }
 
-    public String getUid() {
-        return new String(uid);
-    }
+    // public String getUid() {
+    //     return new String(uid);
+    // }
 
     public void lookup(){
         System.out.println("Looking");
@@ -119,7 +119,7 @@ public class Citizen {
 
     private static Citizen search(ArrayList<Citizen> citizens, char[] uid){
         for(Citizen j: citizens){
-            if(j.getUid().equals(new String(uid))){
+            if((new String(j.uid)).equals(new String(uid))){
                 return j;
             }
         }
