@@ -20,6 +20,7 @@ public class Vaccine {
     // Gap between Doses: 2
     // Vaccine Name: Covax, Number of Doses: 2, Gap Between Doses: 2
         java.util.Scanner sc = new java.util.Scanner(System.in);
+        //sc.closed in COVIN
         Vaccine newvaccine;
         try {
             System.out.print("Vaccine Name: ");
@@ -28,12 +29,25 @@ public class Vaccine {
             int num_doses = sc.nextInt();
             System.out.print("Gap between Doses: ");
             int gap_doses = sc.nextInt();
+            //sc.close();
             newvaccine = new Vaccine(name, num_doses, gap_doses);
         } catch (Exception e) {
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
-        if(validate(newvaccine)) vaccines.add(newvaccine);
+        if(validate(newvaccine)) {
+            vaccines.add(newvaccine);
+            System.out.println(vaccine_info(newvaccine));
+        }
+    }
+
+    private static String vaccine_info(Vaccine newvaccine){
+        return "Vaccine name: "
+            .concat(newvaccine.name)
+            .concat(", Number of doses: ")
+            .concat(String.valueOf(newvaccine.num_doses))
+            .concat(", Gap Between doses: ")
+            .concat(String.valueOf(newvaccine.gap_doses));
     }
 
     public int getGap_doses() {
