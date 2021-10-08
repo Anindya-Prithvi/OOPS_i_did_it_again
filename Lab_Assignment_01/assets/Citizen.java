@@ -56,6 +56,11 @@ public class Citizen {
     }
 
     private static boolean validate(Citizen citizen){
+        if(citizen.uid.length!=12) return false;
+        if(citizen.age<18){
+            System.out.println("Only 18 above are allowed");
+            return false;
+        }
         return true;
     }
 
@@ -75,11 +80,6 @@ public class Citizen {
     public void lookup(){
         System.out.println("Looking");
         return;
-    }
-
-    public boolean validate(){
-        //if valid //multi UID //age
-        return true;
     }
 
     public static void book_slot(ArrayList<Hospital> hospitals, ArrayList<Citizen> citizens, java.util.Scanner sc){

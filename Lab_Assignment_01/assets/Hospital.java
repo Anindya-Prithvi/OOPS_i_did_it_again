@@ -40,6 +40,9 @@ public class Hospital {
             hospitals.add(newhospital);
             System.out.println(hospital_info(newhospital));
         }
+        else{
+            System.out.println("Invalid parameters");
+        }
     }
 
     private static String hospital_info(Hospital hospital){
@@ -53,7 +56,7 @@ public class Hospital {
     }
 
     private static boolean validate(Hospital hospital){
-        return true;
+        return (hospital.pincode.length!=6)?false:true;
     }
 
     private char[] update_huid(){

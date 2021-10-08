@@ -45,6 +45,10 @@ public class Vaccine {
             vaccines.add(newvaccine);
             System.out.println(vaccine_info(newvaccine));
         }
+        else{
+            System.out.println("Invalid parameter");
+            return;
+        }
     }
 
     private static String vaccine_info(Vaccine newvaccine){
@@ -61,7 +65,7 @@ public class Vaccine {
     }
 
     private static boolean validate(Vaccine vaccine) {
-        return true;
+        return (((vaccine.getNum_doses()<1)||(vaccine.gap_doses<0))?false: true);
     }
 
     public String getName() {
