@@ -53,7 +53,7 @@ public class Vaccine {
         return gap_doses;
     }
 
-    private static boolean validate(Vaccine newvaccine) {
+    private static boolean validate(Vaccine vaccine) {
         return true;
     }
 

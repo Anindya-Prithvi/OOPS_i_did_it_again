@@ -59,6 +59,10 @@ public class COVIN{
 
             case 2:
                 Hospital.add_hospital(hospitals, sc);
+                break;
+
+            case 3:
+                Citizen.add_citizen(citizens, sc);
         
             default:
                 break;
