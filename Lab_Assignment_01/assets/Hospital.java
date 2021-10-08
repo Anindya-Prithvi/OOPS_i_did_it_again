@@ -27,6 +27,7 @@ public class Hospital {
             String name = sc.next();
             System.out.print("Pincode: ");
             char[] pincode = sc.next().toCharArray();
+            sc.nextLine();
             //sc.close();
             newhospital = new Hospital(pincode, name);
         } catch (Exception e) {

@@ -27,6 +27,7 @@ public class Vaccine {
             int num_doses = sc.nextInt();
             System.out.print("Gap between Doses: ");
             int gap_doses = sc.nextInt();
+            sc.nextLine();
             //sc.close();
             newvaccine = new Vaccine(name, num_doses, gap_doses);
         } catch (Exception e) {
