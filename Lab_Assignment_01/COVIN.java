@@ -52,7 +52,7 @@ public class COVIN{
         }
         switch (_choice_int) {//resolution: All constructors will have Scanners to make objects
             case 1:
-                
+                Vaccine.add_vaccine(vaccines);
                 break;
         
             default:
