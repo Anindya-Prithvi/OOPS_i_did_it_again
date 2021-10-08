@@ -46,4 +46,16 @@ public class Slot {
         .concat(vaccine.getName())
         );
     }
+
+    public void show_slot_by_huid(){
+        //Day: 1 Vaccine: Covax Available Qty: 5
+        System.out.println(""
+        .concat("Day: ")
+        .concat(String.valueOf(day))
+        .concat(" Vaccine: ")
+        .concat(vaccine.getName())
+        .concat(" Qty: ")
+        .concat(String.valueOf(available_quantity))
+        );
+    }
 }

@@ -128,15 +128,16 @@ public class Hospital {
         // Day: 1 Vaccine: Covax Available Qty: 5
         // Day: 2 Vaccine: Covi Available Qty: 5
         try {
-            System.out.println("Enter Hospital Id: ");
+            System.out.print("Enter Hospital Id: ");
             char[] huid = sc.next().toCharArray();
+            sc.nextLine();//clear stdin
             Hospital hospital = search_by_huid(hospitals, huid);
-            if(hospital==null){System.out.println("Hospital not found"); sc.nextLine(); return;}
+            if(hospital==null){System.out.println("Hospital not found"); return;}
             for(Slot i : hospital.slots){
-                i.show_slot();
+                i.show_slot_by_huid();
             }
         } catch (Exception e) {
-            System.out.println("Erronous input");
+            System.out.println("Erroneous input");
             return;
         }
         return;
