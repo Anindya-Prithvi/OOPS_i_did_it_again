@@ -67,7 +67,7 @@ public class COVIN{
                 break;
 
             case 4:
-                Hospital.add_slots(hospitals, sc);
+                Hospital.add_slots(hospitals, vaccines, sc);
                 break;
 
             case 5:
@@ -88,5 +88,4 @@ public class COVIN{
         return false; //parse choices
     }
 
-    //here we shall make Hospitals and citizens (staker)
 }

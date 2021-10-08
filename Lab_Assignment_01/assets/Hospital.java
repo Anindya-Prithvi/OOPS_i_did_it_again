@@ -9,6 +9,8 @@ public class Hospital {
     private final String name;
     private final char[] huid; //000000
 
+    ArrayList<Slot> slots = new ArrayList<Slot>();
+
     public Hospital(char[] pincode, String name){
         this.pincode = pincode;
         this.name = name;
@@ -72,15 +74,52 @@ public class Hospital {
         return pincode;
     }
 
-    public char[] getHuid() {
-        return huid;
+    public String getHuid() {
+        return new String(huid);
     }
 
-    public static void add_slots(ArrayList<Hospital> hospitals, java.util.Scanner sc) {
-        //maybe a slot array is passed here
-        //count slots then add each
-        //TODO
-        //hospitals might need access to edit their slots (IRL)
+    public static void add_slots(ArrayList<Hospital> hospitals, ArrayList<Vaccine> vaccines, java.util.Scanner sc) {
+        // Enter Hospital ID: 123456
+        // Enter number of Slots to be added: 2
+        // Enter Day Number: 1
+        // Enter Quantity: 5
+        // Select Vaccine
+        // 0. Covax
+        // 1. Covi
+        try {
+            System.out.print("Enter Hospital ID: ");
+            char[] huid = sc.next().toCharArray();
+            Hospital hospital_newslot = search_by_huid(hospitals, huid);
+            if(hospital_newslot==null){System.out.println("Not found"); return;}
+            System.out.print("Enter number of Slots to be added: ");
+            int i = sc.nextInt(); //iterator
+            while(i-->0){
+                System.out.print("\nEnter Day Number: ");
+                int day = sc.nextInt();
+                System.out.print("\nEnter Quantity: ");
+                int quantity = sc.nextInt();
+                Vaccine selected = Vaccine.chooseVaccine(vaccines, sc);
+                if(selected==null) return;
+                Slot new_slot = new Slot(day, selected, quantity, huid);
+                hospital_newslot.slots.add(new_slot);
+                new_slot.show_slot();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error occured");
+            return;
+        }
+        return;
+        
+    }
+
+    private static Hospital search_by_huid(ArrayList<Hospital> hospitals, char[] huid){
+        for(Hospital j: hospitals){
+            if(j.getHuid().equals(new String(huid))){
+                return j;
+            }
+        }
+        return null;
     }
 
     public static void list_slots(ArrayList<Hospital> hospitals, java.util.Scanner sc){

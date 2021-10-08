@@ -64,4 +64,21 @@ public class Vaccine {
     public int getNum_doses() {
         return num_doses;
     }
+
+    public static Vaccine chooseVaccine(ArrayList<Vaccine> vaccines, java.util.Scanner sc){
+        if(vaccines.size()==0){System.out.println("No Vaccines added");return null;}
+        int i = 0;
+        System.out.println("Select Vaccine");
+        for(Vaccine j:vaccines){
+            System.out.println(i+". "+j.getName());
+            ++i;
+        }
+        try {
+            int index = sc.nextInt();
+            return vaccines.get(index);
+        } catch (Exception e) {
+            System.out.println("Erronous input");
+            return null;
+        }
+    }
 }
