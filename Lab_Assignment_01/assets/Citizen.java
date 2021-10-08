@@ -35,6 +35,7 @@ public class Citizen {
             //sc.close();
             newcitizen = new Citizen(name, age, uid);
         } catch (Exception e) {
+            sc.nextLine();//clear stdin
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
@@ -91,6 +92,7 @@ public class Citizen {
         // Enter Patient ID: 123456789000
         System.out.print("Enter Patient ID: ");
         char[] uid = sc.next().toCharArray();
+        sc.nextLine();//clear stdin
         Citizen patient = search(citizens, uid);
         if(patient==null) {
             System.out.println("Does not exist");

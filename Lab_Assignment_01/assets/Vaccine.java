@@ -37,6 +37,7 @@ public class Vaccine {
             //sc.close();
             newvaccine = new Vaccine(name, num_doses, gap_doses);
         } catch (Exception e) {
+            sc.nextLine();//clear stdin
             System.out.println("Exception Occured/ Invalid input");
             return;
         }

@@ -90,7 +90,7 @@ public class Hospital {
             System.out.print("Enter Hospital ID: ");
             char[] huid = sc.next().toCharArray();
             Hospital hospital_newslot = search_by_huid(hospitals, huid);
-            if(hospital_newslot==null){System.out.println("Not found"); return;}
+            if(hospital_newslot==null){System.out.println("Not found");sc.nextLine(); return;}
             System.out.print("Enter number of Slots to be added: ");
             int i = sc.nextInt(); //iterator
             while(i-->0){
@@ -107,6 +107,7 @@ public class Hospital {
             }
 
         } catch (Exception e) {
+            sc.nextLine();
             System.out.println("Error occured");
             return;
         }
