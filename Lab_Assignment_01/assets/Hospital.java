@@ -15,7 +15,6 @@ public class Hospital {
         this.pincode = pincode;
         this.name = name;
         this.huid = update_huid();
-        if(validate(this)){++id_int;}
     }
 
     public static void add_hospital(ArrayList<Hospital> hospitals, java.util.Scanner sc){
@@ -36,7 +35,7 @@ public class Hospital {
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
-        if(validate(newhospital)) {
+        if(validate(newhospital, hospitals)) {
             hospitals.add(newhospital);
             System.out.println(hospital_info(newhospital));
         }
@@ -55,8 +54,13 @@ public class Hospital {
             .concat(new String(hospital.huid));
     }
 
-    private static boolean validate(Hospital hospital){
-        return (hospital.pincode.length!=6)?false:true;
+    private static boolean validate(Hospital hospital, ArrayList<Hospital> hospitals){
+        for(Hospital j: hospitals){
+            if(j.name.equals(hospital.name)&&j.pincode.toString().equals(hospital.pincode.toString())) return false;
+        }
+        if(hospital.pincode.length!=6) return false;
+        ++Hospital.id_int;
+        return true;
     }
 
     private char[] update_huid(){

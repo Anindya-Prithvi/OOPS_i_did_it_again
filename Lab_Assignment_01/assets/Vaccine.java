@@ -41,7 +41,7 @@ public class Vaccine {
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
-        if(validate(newvaccine)) {
+        if(validate(newvaccine, vaccines)) {
             vaccines.add(newvaccine);
             System.out.println(vaccine_info(newvaccine));
         }
@@ -64,7 +64,12 @@ public class Vaccine {
         return gap_doses;
     }
 
-    private static boolean validate(Vaccine vaccine) {
+    private static boolean validate(Vaccine vaccine, ArrayList<Vaccine> vaccines) {
+        //duplicacy :)
+        //vaccine based plagiarism lol
+        for(Vaccine j: vaccines){
+            if(j.name.equals(vaccine.name)) return false;
+        }
         return (((vaccine.getNum_doses()<1)||(vaccine.gap_doses<0))?false: true);
     }
 

@@ -39,7 +39,7 @@ public class Citizen {
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
-        if(validate(newcitizen)) {
+        if(validate(newcitizen, citizens)) {
             citizens.add(newcitizen);
             System.out.println(citizen_info(newcitizen));
         }
@@ -55,7 +55,10 @@ public class Citizen {
             .concat(new String(citizen.uid));
     }
 
-    private static boolean validate(Citizen citizen){
+    private static boolean validate(Citizen citizen, ArrayList<Citizen> citizens){
+        for(Citizen j: citizens){
+            if(j.uid.toString().equals(citizen.uid.toString())) return false;
+        }
         if(citizen.uid.length!=12) return false;
         if(citizen.age<18){
             System.out.println("Only 18 above are allowed");
