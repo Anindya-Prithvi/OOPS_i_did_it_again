@@ -88,7 +88,6 @@ public class Citizen {
     }
 
     public static void check_vaccination_status(ArrayList<Citizen> citizens, java.util.Scanner sc){
-        //TODO
         // Enter Patient ID: 123456789000
         System.out.print("Enter Patient ID: ");
         char[] uid = sc.next().toCharArray();

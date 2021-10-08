@@ -74,7 +74,7 @@ public class Vaccine {
             ++i;
         }
         try {
-            int index = sc.nextInt();
+            int index = Integer.parseInt(sc.nextLine());
             return vaccines.get(index);
         } catch (Exception e) {
             System.out.println("Erronous input");

@@ -94,10 +94,11 @@ public class Hospital {
             System.out.print("Enter number of Slots to be added: ");
             int i = sc.nextInt(); //iterator
             while(i-->0){
-                System.out.print("\nEnter Day Number: ");
+                System.out.print("Enter Day Number: ");
                 int day = sc.nextInt();
-                System.out.print("\nEnter Quantity: ");
+                System.out.print("Enter Quantity: ");
                 int quantity = sc.nextInt();
+                sc.nextLine();//clear stdin
                 Vaccine selected = Vaccine.chooseVaccine(vaccines, sc);
                 if(selected==null) return;
                 Slot new_slot = new Slot(day, selected, quantity, huid);
@@ -123,6 +124,21 @@ public class Hospital {
     }
 
     public static void list_slots(ArrayList<Hospital> hospitals, java.util.Scanner sc){
-        //TODO
+        // Enter Hospital Id: 123456
+        // Day: 1 Vaccine: Covax Available Qty: 5
+        // Day: 2 Vaccine: Covi Available Qty: 5
+        try {
+            System.out.println("Enter Hospital Id: ");
+            char[] huid = sc.next().toCharArray();
+            Hospital hospital = search_by_huid(hospitals, huid);
+            if(hospital==null){System.out.println("Hospital not found"); sc.nextLine(); return;}
+            for(Slot i : hospital.slots){
+                i.show_slot();
+            }
+        } catch (Exception e) {
+            System.out.println("Erronous input");
+            return;
+        }
+        return;
     }
 }

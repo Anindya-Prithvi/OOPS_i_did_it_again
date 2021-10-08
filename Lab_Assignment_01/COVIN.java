@@ -32,7 +32,7 @@ public class COVIN{
         sc = new Scanner(System.in);
         System.out.print("COVIN Portal Initialized...\n");
         //main loop
-        while(true){
+        while(sc.hasNext()){
             System.out.print(menu);
             if(choice_handler(sc)) break;
         }
