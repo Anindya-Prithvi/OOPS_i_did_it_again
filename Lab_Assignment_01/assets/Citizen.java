@@ -7,6 +7,10 @@ public class Citizen {
     private String name;
     private int age;
     private final char[] uid;
+    private String cvs = "REGISTERED";
+    private String given = null; //vaccine name
+    private int doses; //doses given
+    private Integer due = null;
 
     public Citizen(String name, int age, char[] uid){
         this.name = name;
@@ -63,8 +67,8 @@ public class Citizen {
         return name;
     }
 
-    public char[] getUid() {
-        return uid;
+    public String getUid() {
+        return new String(uid);
     }
 
     public void lookup(){
@@ -85,5 +89,36 @@ public class Citizen {
 
     public static void check_vaccination_status(ArrayList<Citizen> citizens, java.util.Scanner sc){
         //TODO
+        // Enter Patient ID: 123456789000
+        System.out.print("Enter Patient ID: ");
+        char[] uid = sc.next().toCharArray();
+        Citizen patient = search(citizens, uid);
+        if(patient==null) {
+            System.out.println("Does not exist");
+            return;
+        }
+        // PARTIALLY VACCINATED
+        System.out.println(vaccination_status(patient));
+        // Vaccine Given: Covax
+        // Number of Doses given: 1
+        // Next Dose due date: 3
+    }
+
+    private static String vaccination_status(Citizen patient){
+        return ""
+            .concat(patient.cvs) //current vacstatus
+            .concat("\nVaccine Given: "+patient.given)
+            .concat("\nNumber of Doses given: "+patient.doses)
+            .concat("\nNext Dose due date: "+patient.due)
+        ;
+    }
+
+    private static Citizen search(ArrayList<Citizen> citizens, char[] uid){
+        for(Citizen j: citizens){
+            if(j.getUid().equals(new String(uid))){
+                return j;
+            }
+        }
+        return null;
     }
 }
