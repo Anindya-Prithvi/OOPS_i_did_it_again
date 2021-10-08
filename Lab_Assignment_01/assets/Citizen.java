@@ -63,7 +63,7 @@ public class Citizen {
         return name;
     }
 
-    public int getUid() {
+    public char[] getUid() {
         return uid;
     }
 
