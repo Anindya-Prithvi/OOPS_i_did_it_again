@@ -40,7 +40,13 @@ public class COVIN{
     }
 
     public static boolean choice_handler(Scanner sc){
-        String choice = sc.nextLine();
+        String choice;
+        try {
+            choice = sc.nextLine();            
+        } catch (Exception e) {
+            System.out.println("Unprecedented STDIN");
+            return false;
+        }
         int _choice_int;
         try {
             _choice_int = Integer.parseInt(choice);
