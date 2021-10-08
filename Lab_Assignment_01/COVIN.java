@@ -39,7 +39,7 @@ public class COVIN{
         sc.close();
     }
 
-    public static boolean choice_handler(Scanner sc){
+    private static boolean choice_handler(Scanner sc){
         String choice;
         try {
             choice = sc.nextLine();            

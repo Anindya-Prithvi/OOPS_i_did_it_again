@@ -80,7 +80,7 @@ public class Citizen {
     //     return new String(uid);
     // }
 
-    public void lookup(){
+    private void lookup(){
         System.out.println("Looking");
         return;
     }
