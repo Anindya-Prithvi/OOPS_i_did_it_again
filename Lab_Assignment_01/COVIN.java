@@ -17,11 +17,29 @@ public class COVIN{
     public static void main(String[] args){
         //initialize portal
         Scanner sc = new Scanner(System.in);
-        System.out.print("COVIN Portal Initialized...\n"
-        .concat(endline));
-        System.out.print(menu);
-        
+        System.out.print("COVIN Portal Initialized...\n".concat(endline));
+        //main loop
+        while(true){
+            System.out.print(menu);
+            if(choice_handler(sc.nextLine())) break;
+        }
+        sc.close();
+    }
 
+    public static boolean choice_handler(String choice){
+        int _choice_int;
+        try {
+            _choice_int = Integer.parseInt(choice);
+        } catch (Exception e) {
+            System.out.println("Invalid choice");
+            return false; //i.e. dont exit
+        }
+        if (_choice_int==8) return true; //exit main loop
+        if ((_choice_int>8)||_choice_int<1){
+            System.out.println("Invalid choice");
+            return false; //i.e. dont exit
+        }
+        return false; //parse choices
     }
 
     //here we shall make Hospitals and citizens (staker)
