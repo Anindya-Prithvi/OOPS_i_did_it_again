@@ -56,7 +56,7 @@ public class Hospital {
 
     private static boolean validate(Hospital hospital, ArrayList<Hospital> hospitals){
         for(Hospital j: hospitals){
-            if(j.name.equals(hospital.name)&&j.pincode.toString().equals(hospital.pincode.toString())) return false;
+            if(j.name.equals(hospital.name)&&(new String(j.pincode)).equals(new String(hospital.pincode))) return false;
         }
         if(hospital.pincode.length!=6) return false;
         ++Hospital.id_int;

@@ -57,7 +57,7 @@ public class Citizen {
 
     private static boolean validate(Citizen citizen, ArrayList<Citizen> citizens){
         for(Citizen j: citizens){
-            if(j.uid.toString().equals(citizen.uid.toString())) return false;
+            if((new String(j.uid)).equals(new String(citizen.uid))) return false;
         }
         if(citizen.uid.length!=12) return false;
         if(citizen.age<18){
