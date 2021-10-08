@@ -33,4 +33,17 @@ public class Slot {
     public char[] getHospital_id() {
         return hospital_id;
     }
+
+    public void show_slot(){
+        //Slot added by Hospital 123456 for Day: 1, Available Quantity: 5 of Vaccine Covax
+        System.out.println("Slot added by Hospital "
+        .concat(new String(hospital_id))
+        .concat(" for Day: ")
+        .concat(String.valueOf(day))
+        .concat(", Available Quantity: ")
+        .concat(String.valueOf(available_quantity))
+        .concat("of Vaccine ")
+        .concat(vaccine.getName())
+        );
+    }
 }

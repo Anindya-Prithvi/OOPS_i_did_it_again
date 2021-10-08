@@ -8,10 +8,14 @@ public class Hospital {
     private final char[] huid; //000000
 
     public Hospital(char[] pincode, String name, char[] huid){
-        ++id_int;
         this.pincode = pincode;
         this.name = name;
         this.huid = update_huid();
+        if(validate()){++id_int;}
+    }
+
+    public boolean validate(){
+        return true;
     }
 
     private char[] update_huid(){
@@ -32,11 +36,14 @@ public class Hospital {
         return pincode;
     }
 
-    public boolean upload_slot(){
-        return true;
-    }
-
     public char[] getHuid() {
         return huid;
+    }
+
+    public void addslots() {
+        //maybe a slot array is passed here
+        //count slots then add each
+        //TODO
+        //hospitals might need access to edit their slots (IRL)
     }
 }

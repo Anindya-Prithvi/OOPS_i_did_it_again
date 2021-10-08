@@ -14,4 +14,6 @@ public class COVIN{
         .concat("--------------------------------\n")
         );
     }
+
+    //here we shall make Hospitals and citizens (staker)
 }

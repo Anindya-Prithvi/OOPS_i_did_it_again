@@ -30,7 +30,12 @@ public class Citizen {
     }
 
     public boolean validate(){
-        //if valid
+        //if valid //multi UID //age
         return true;
+    }
+
+    public void book_slot(Slot slot){
+        //may add error handling (not req) if out of vacc
+        slot.used_vaccine();
     }
 }
