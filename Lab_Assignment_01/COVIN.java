@@ -52,7 +52,7 @@ public class COVIN{
             System.out.println("Invalid choice");
             return false; //i.e. dont exit
         }
-        switch (_choice_int) {//resolution: All constructors will have Scanners to make objects
+        switch (_choice_int) {//resolution: All scanners passed to static ref
             case 1:
                 Vaccine.add_vaccine(vaccines, sc);
                 break;
