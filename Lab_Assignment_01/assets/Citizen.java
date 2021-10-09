@@ -10,7 +10,7 @@ public class Citizen {
     private String cvs = "REGISTERED"; //current vac status
     private String given = null; //vaccine name
     private int doses; //doses given
-    private Integer due = null;
+    private int due;
 
     public Citizen(String name, int age, char[] uid){
         this.name = name;
@@ -39,9 +39,9 @@ public class Citizen {
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
+        System.out.println(citizen_info(newcitizen));
         if(validate(newcitizen, citizens)) {
             citizens.add(newcitizen);
-            System.out.println(citizen_info(newcitizen));
         }else{
             System.out.println("Validation failed");
         }

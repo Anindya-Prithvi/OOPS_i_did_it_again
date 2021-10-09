@@ -69,7 +69,7 @@ public class Slot {
         .concat(String.valueOf(day))
         .concat(" Vaccine: ")
         .concat(vaccine.getName())
-        .concat(" Qty: ")
+        .concat(" Available Qty: ")
         .concat(String.valueOf(available_quantity))
         );
     }

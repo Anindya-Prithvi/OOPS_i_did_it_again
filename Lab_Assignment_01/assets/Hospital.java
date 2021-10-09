@@ -100,6 +100,7 @@ public class Hospital {
             if(hospital_newslot==null){System.out.println("Not found");sc.nextLine(); return;}
             System.out.print("Enter number of Slots to be added: ");
             int i = sc.nextInt(); //iterator
+            if(i<1){sc.nextLine(); return;}//not an error
             while(i-->0){
                 System.out.print("Enter Day Number: ");
                 int day = sc.nextInt();
