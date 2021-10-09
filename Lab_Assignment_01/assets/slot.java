@@ -17,9 +17,9 @@ public class Slot {
         return available_quantity;
     }
 
-    // public int getDay() {
-    //     return day;
-    // }
+    public int getDay() {
+        return day;
+    }
 
     // public String getVaccine() {
     //     return vaccine.getName();
@@ -32,7 +32,7 @@ public class Slot {
         // private Integer due = null;
         --available_quantity;
         citizen.set_given(vaccine.getName());
-        citizen.set_doses(vaccine.getNum_doses());
+        citizen.update_doses();
         if(citizen.get_doses()==vaccine.getNum_doses()){
             citizen.set_cvs("FULLY VACCINATED");
         }
@@ -40,6 +40,8 @@ public class Slot {
             citizen.set_due(vaccine.getGap_doses()+day);
             citizen.set_cvs("PARTIALLY VACCINATED");
         }
+        //Marrion vaccinated with Covax
+        System.out.println(citizen.get_name()+" vaccinated with "+vaccine.getName());
         return;
     }
 

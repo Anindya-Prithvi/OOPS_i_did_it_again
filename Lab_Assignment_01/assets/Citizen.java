@@ -26,7 +26,7 @@ public class Citizen {
         Citizen newcitizen;
         try {
             System.out.print("Citizen Name: ");
-            String name = sc.next();
+            String name = sc.nextLine();
             System.out.print("Age: ");
             int age = sc.nextInt();
             System.out.print("Unique ID: ");
@@ -77,8 +77,8 @@ public class Citizen {
         this.given = vaccine;
     }
 
-    public void set_doses(int doses){
-        this.doses += doses;
+    public void update_doses(){
+        this.doses ++;
     }
 
     public void set_cvs(String vs){
@@ -87,6 +87,10 @@ public class Citizen {
 
     public void set_due(int days){
         this.due = days;
+    }
+
+    public String get_name(){
+        return name;
     }
 
     private static void lookup(ArrayList<Hospital> hospitals, Citizen patient, java.util.Scanner sc){
@@ -102,6 +106,7 @@ public class Citizen {
             if(choice==1){
                 Slot booked = Hospital.search_by_pin(hospitals, sc);
                 if(booked==null){System.out.println("No slot booked");sc.nextLine();return;}
+                if(booked.getDay()<patient.due){System.out.println("Not eligible for vaccine");sc.nextLine(); return;}
                 booked.used_vaccine(patient);
                 choice = 3; //everything must come to an end
             }
@@ -134,6 +139,7 @@ public class Citizen {
         try {
             System.out.print("Enter patient Unique ID: ");
             char[] uid = sc.next().toCharArray();
+            sc.nextLine();
             Citizen patient = search(citizens, uid);
             if(patient==null){System.out.println("Patient not found"); return;}
             else{
