@@ -13,9 +13,9 @@ public class Slot {
         this.hospital_id = hospital_id;
     }
 
-    // public int getAvailable_quantity() {
-    //     return available_quantity;
-    // }
+    public int getAvailable_quantity() {
+        return available_quantity;
+    }
 
     // public int getDay() {
     //     return day;
@@ -25,8 +25,21 @@ public class Slot {
     //     return vaccine.getName();
     // }
 
-    public void used_vaccine() {
+    public void used_vaccine(Citizen citizen) {
+        // private String cvs = "REGISTERED"; //current vac status
+        // private String given = null; //vaccine name
+        // private int doses; //doses given
+        // private Integer due = null;
         --available_quantity;
+        citizen.set_given(vaccine.getName());
+        citizen.set_doses(vaccine.getNum_doses());
+        if(citizen.get_doses()==vaccine.getNum_doses()){
+            citizen.set_cvs("FULLY VACCINATED");
+        }
+        else{
+            citizen.set_due(vaccine.getGap_doses()+day);
+            citizen.set_cvs("PARTIALLY VACCINATED");
+        }
         return;
     }
 

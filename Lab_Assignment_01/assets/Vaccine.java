@@ -46,7 +46,7 @@ public class Vaccine {
             System.out.println(vaccine_info(newvaccine));
         }
         else{
-            System.out.println("Invalid parameter");
+            System.out.println("Validation failed");
             return;
         }
     }
@@ -60,9 +60,9 @@ public class Vaccine {
             .concat(String.valueOf(newvaccine.gap_doses));
     }
 
-    // public int getGap_doses() {
-    //     return gap_doses;
-    // }
+    public int getGap_doses() {
+        return gap_doses;
+    }
 
     private static boolean validate(Vaccine vaccine, ArrayList<Vaccine> vaccines) {
         //duplicacy :)
@@ -77,9 +77,9 @@ public class Vaccine {
         return name;
     }
 
-    // public int getNum_doses() {
-    //     return num_doses;
-    // }
+    public int getNum_doses() {
+        return num_doses;
+    }
 
     public static Vaccine chooseVaccine(ArrayList<Vaccine> vaccines, java.util.Scanner sc){
         if(vaccines.size()==0){System.out.println("No Vaccines added");return null;}

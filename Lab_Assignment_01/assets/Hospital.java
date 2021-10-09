@@ -40,7 +40,7 @@ public class Hospital {
             System.out.println(hospital_info(newhospital));
         }
         else{
-            System.out.println("Invalid parameters");
+            System.out.println("Validation failed");
         }
     }
 
@@ -129,6 +129,38 @@ public class Hospital {
             }
         }
         return null;
+    }
+
+    public static Slot search_by_pin(ArrayList<Hospital> hospitals, java.util.Scanner sc){
+        // Enter PinCode: 110091
+        // 123456 Medistar
+        // Enter hospital id: 123456
+
+        // 0-> Day: 1 Available Qty:5 Vaccine:Covax
+        // 1-> Day: 2 Available Qty:5 Vaccine:Covi
+        // Choose Slot: 0
+
+        System.out.print("Enter Pincode: ");
+        char[] pincode = sc.next().toCharArray();
+        for(Hospital j: hospitals){
+            if((new String(j.pincode)).equals(new String(pincode))){
+                System.out.println(new String(j.huid) +" "+ j.name);
+            }
+        }
+        System.out.print("Enter Hospital ID: ");
+        char[] huid = sc.next().toCharArray();
+        Hospital vaccine_camp = search_by_huid(hospitals, huid);
+        if(vaccine_camp==null){return null;}
+        if(vaccine_camp.slots.size()==0){System.out.println("No slots available");return null;}
+        int num=0;
+        for(Slot j: vaccine_camp.slots){
+            System.out.print(num+"-> "); j.show_slot_by_huid();
+            num++;
+        }
+        System.out.print("Choose Slot: ");
+        Slot slot_choice = vaccine_camp.slots.get(sc.nextInt());
+        if(slot_choice.getAvailable_quantity()==0){return null;}
+        return slot_choice;
     }
 
     public static void list_slots(ArrayList<Hospital> hospitals, java.util.Scanner sc){
