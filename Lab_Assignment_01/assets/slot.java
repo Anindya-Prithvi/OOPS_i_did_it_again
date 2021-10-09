@@ -1,16 +1,14 @@
 package Lab_Assignment_01.assets;
 
 public class Slot {
-    private final char[] hospital_id;
     private final int day;
     private final Vaccine vaccine;
     private int available_quantity;
 
-    public Slot(int day, Vaccine vaccine, int available_quantity, char[] hospital_id){
+    public Slot(int day, Vaccine vaccine, int available_quantity){
         this.day = day;
         this.vaccine = vaccine;
         this.available_quantity = available_quantity;
-        this.hospital_id = hospital_id;
     }
 
     public int getAvailable_quantity() {
@@ -45,14 +43,10 @@ public class Slot {
         return;
     }
 
-    public String getHospital_id() {
-        return new String(hospital_id);
-    }
-
-    public void show_slot(){
+    public void show_slot(Hospital hospital){
         //Slot added by Hospital 123456 for Day: 1, Available Quantity: 5 of Vaccine Covax
         System.out.println("Slot added by Hospital "
-        .concat(new String(hospital_id))
+        .concat(new String(hospital.getHuid()))
         .concat(" for Day: ")
         .concat(String.valueOf(day))
         .concat(", Available Quantity: ")

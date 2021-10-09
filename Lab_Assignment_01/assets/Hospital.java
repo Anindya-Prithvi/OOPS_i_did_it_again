@@ -81,9 +81,9 @@ public class Hospital {
     //     return pincode;
     // }
 
-    // public String getHuid() {
-    //     return new String(huid);
-    // }
+    public String getHuid() {
+        return new String(huid);
+    }
 
     public static void add_slots(ArrayList<Hospital> hospitals, ArrayList<Vaccine> vaccines, java.util.Scanner sc) {
         // Enter Hospital ID: 123456
@@ -109,9 +109,9 @@ public class Hospital {
                 sc.nextLine();//clear stdin
                 Vaccine selected = Vaccine.chooseVaccine(vaccines, sc);
                 if(selected==null) return;
-                Slot new_slot = new Slot(day, selected, quantity, huid);
+                Slot new_slot = new Slot(day, selected, quantity);
                 hospital_newslot.slots.add(new_slot);
-                new_slot.show_slot();
+                new_slot.show_slot(hospital_newslot);
             }
 
         } catch (Exception e) {
@@ -178,17 +178,15 @@ public class Hospital {
         System.out.print("Enter Vaccine name: ");
         String vaccine_name = sc.next();
         ArrayList<Slot> available = new ArrayList<Slot>();
+        int num=0;
         for(Hospital j: hospitals){
             for(Slot k: j.slots){
                 if((k.getVaccine().equals(vaccine_name))){
+                    ++num;
                     available.add(k);
+                    System.out.println(new String(j.huid)+" "+new String(search_by_huid(hospitals, j.huid).name));
                 }
             }
-        }
-        int num=0;
-        for(Slot j: available){
-            ++num;
-            System.out.println(j.getHospital_id()+" "+new String(search_by_huid(hospitals, j.getHospital_id().toCharArray()).name));
         }
         if(num==0){System.out.println("No hospital has this vaccine");return null;}
         System.out.print("Enter Hospital ID: ");
