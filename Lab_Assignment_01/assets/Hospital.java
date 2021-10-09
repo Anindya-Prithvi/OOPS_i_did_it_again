@@ -25,7 +25,7 @@ public class Hospital {
         Hospital newhospital;
         try {
             System.out.print("Hospital Name: ");
-            String name = sc.next();
+            String name = sc.nextLine();
             System.out.print("Pincode: ");
             char[] pincode = sc.next().toCharArray();
             ;

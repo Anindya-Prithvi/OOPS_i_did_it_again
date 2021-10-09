@@ -22,7 +22,7 @@ public class Vaccine {
         Vaccine newvaccine;
         try {
             System.out.print("Vaccine Name: ");
-            String name = sc.next();
+            String name = sc.nextLine();
             System.out.print("Number of Doses: ");
             int num_doses = sc.nextInt();
             int gap_doses;
@@ -90,7 +90,7 @@ public class Vaccine {
             ++i;
         }
         try {
-            int index = Integer.parseInt(sc.nextLine());
+            int index = Integer.parseInt(sc.next());
             return vaccines.get(index);
         } catch (Exception e) {
             System.out.println("Erronous input");
