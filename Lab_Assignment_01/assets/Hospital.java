@@ -172,6 +172,9 @@ public class Hospital {
         // No slots available
         // Choose Slot: 0
 
+        //INCONSISTENCY IN INSTRUCTIONS page3/8 5.
+        //assumed correct: task 5 page3/8
+
         System.out.print("Enter Vaccine name: ");
         String vaccine_name = sc.next();
         ArrayList<Slot> available = new ArrayList<Slot>();

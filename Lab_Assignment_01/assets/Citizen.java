@@ -187,24 +187,26 @@ public class Citizen {
         }
         // PARTIALLY VACCINATED
         if(patient.cvs.equals("PARTIALLY VACCINATED")){
-            System.out.println(vaccination_status(patient));
+            System.out.println(""
+                .concat(patient.cvs) //current vacstatus
+                .concat("\nVaccine Given: "+patient.given)
+                .concat("\nNumber of Doses given: "+patient.doses)
+                .concat("\nNext Dose due date: "+patient.due)
+            );
         }
-        else{
-            System.out.println(patient.cvs);
+        else if(patient.cvs.equals("FULLY VACCINATED")){
+            System.out.println(patient.cvs
+            .concat(patient.cvs) //current vacstatus
+            .concat("\nVaccine Given: "+patient.given)
+            .concat("\nNumber of Doses given: "+patient.doses));
+        }
+        else if(patient.cvs.equals("REGISTERED")){
+            System.out.println("Citizen REGISTERED");
         }
         return;
         // Vaccine Given: Covax
         // Number of Doses given: 1
         // Next Dose due date: 3
-    }
-
-    private static String vaccination_status(Citizen patient){
-        return ""
-            .concat(patient.cvs) //current vacstatus
-            .concat("\nVaccine Given: "+patient.given)
-            .concat("\nNumber of Doses given: "+patient.doses)
-            .concat("\nNext Dose due date: "+patient.due)
-        ;
     }
 
     private static Citizen search(ArrayList<Citizen> citizens, char[] uid){
