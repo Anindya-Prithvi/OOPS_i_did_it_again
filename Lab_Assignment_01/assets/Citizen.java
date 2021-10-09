@@ -120,7 +120,7 @@ public class Citizen {
                         return;
                     }
                     if(patient.cvs.equals("FULLY VACCINATED")){
-                        System.out.println("Vaccine overdone disallowed:)");
+                        System.out.println("Vaccine overdose disallowed:)");
                         sc.nextLine();
                         return;
                     }
@@ -195,7 +195,7 @@ public class Citizen {
             );
         }
         else if(patient.cvs.equals("FULLY VACCINATED")){
-            System.out.println(patient.cvs
+            System.out.println(""
             .concat(patient.cvs) //current vacstatus
             .concat("\nVaccine Given: "+patient.given)
             .concat("\nNumber of Doses given: "+patient.doses));

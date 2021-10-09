@@ -185,15 +185,18 @@ public class Hospital {
                 }
             }
         }
+        int num=0;
         for(Slot j: available){
+            ++num;
             System.out.println(j.getHospital_id()+" "+new String(search_by_huid(hospitals, j.getHospital_id().toCharArray()).name));
         }
+        if(num==0){System.out.println("No hospital has this vaccine");return null;}
         System.out.print("Enter Hospital ID: ");
         char[] huid = sc.next().toCharArray();
         Hospital vaccine_camp = search_by_huid(hospitals, huid);
         if(vaccine_camp==null){return null;}
         if(vaccine_camp.slots.size()==0){System.out.println("No slots available");return null;}
-        int num=0;
+        num=0;
         int fallback=0;
         for(Slot j: vaccine_camp.slots){
             if(j.getVaccine().equals(vaccine_name)) {
