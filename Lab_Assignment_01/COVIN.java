@@ -91,6 +91,7 @@ public class COVIN{
             default:
                 break;
         }
+        sc.nextLine(); //master STDIN clear
         return false; //parse choices
     }
 

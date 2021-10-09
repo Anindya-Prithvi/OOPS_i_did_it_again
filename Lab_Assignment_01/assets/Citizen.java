@@ -31,11 +31,11 @@ public class Citizen {
             int age = sc.nextInt();
             System.out.print("Unique ID: ");
             char[] uid = sc.next().toCharArray();
-            sc.nextLine();
+            ;
             //sc.close();
             newcitizen = new Citizen(name, age, uid);
         } catch (Exception e) {
-            sc.nextLine();//clear stdin
+            ;//clear stdin
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
@@ -107,40 +107,40 @@ public class Citizen {
             if((choice==1)||(choice==2)) {
                 booked = (choice==1)?Hospital.search_by_pin(hospitals, sc)
                                     :Hospital.search_by_vaccine(hospitals, sc);
-                if(booked==null){System.out.println("No slot booked");sc.nextLine();return;}
+                if(booked==null){System.out.println("No slot booked");;return;}
                 if(booked.getDay()<patient.due){
                     System.out.println("Not eligible for vaccine");
-                    sc.nextLine(); 
+                    ; 
                     return;
                 }
                 if(!patient.cvs.equals("REGISTERED")){
                     if(!patient.given.equals(booked.getVaccine())){
                         System.out.println("No vaccine cocktails, pls");
-                        sc.nextLine();
+                        ;
                         return;
                     }
                     if(patient.cvs.equals("FULLY VACCINATED")){
                         System.out.println("Vaccine overdose disallowed:)");
-                        sc.nextLine();
+                        ;
                         return;
                     }
                 }
                 booked.used_vaccine(patient);
-                sc.nextLine();
+                ;
                 choice = 3; //everything must come to an end
             }
             else if(choice==3){
-                sc.nextLine();
+                ;
                 return;
             }
             else{
-                sc.nextLine();
+                ;
                 System.out.println("Invalid choice, exiting");
                 return;
             }
         } catch (Exception e) {
             System.out.println("Invalid input");
-            sc.nextLine();
+            ;
         }
         
         // Enter option: 1
@@ -159,7 +159,7 @@ public class Citizen {
         try {
             System.out.print("Enter patient Unique ID: ");
             char[] uid = sc.next().toCharArray();
-            sc.nextLine();
+            ;
             Citizen patient = search(citizens, uid);
             if(patient==null){System.out.println("Patient not found"); return;}
             else{
@@ -169,7 +169,7 @@ public class Citizen {
             }
         } catch (Exception e) {
             System.out.println("Invalid Input/ Error");
-            sc.nextLine();
+            ;
             return;
         }
         return;
@@ -179,7 +179,7 @@ public class Citizen {
         // Enter Patient ID: 123456789000
         System.out.print("Enter Patient ID: ");
         char[] uid = sc.next().toCharArray();
-        sc.nextLine();//clear stdin
+        ;//clear stdin
         Citizen patient = search(citizens, uid);
         if(patient==null) {
             System.out.println("Does not exist");

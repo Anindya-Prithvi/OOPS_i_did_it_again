@@ -28,7 +28,7 @@ public class Hospital {
             String name = sc.next();
             System.out.print("Pincode: ");
             char[] pincode = sc.next().toCharArray();
-            sc.nextLine();
+            ;
             //sc.close();
             newhospital = new Hospital(pincode, name);
         } catch (Exception e) {
@@ -97,10 +97,10 @@ public class Hospital {
             System.out.print("Enter Hospital ID: ");
             char[] huid = sc.next().toCharArray();
             Hospital hospital_newslot = search_by_huid(hospitals, huid);
-            if(hospital_newslot==null){System.out.println("Not found");sc.nextLine(); return;}
+            if(hospital_newslot==null){System.out.println("Not found");; return;}
             System.out.print("Enter number of Slots to be added: ");
             int i = sc.nextInt(); //iterator
-            if(i<1){sc.nextLine(); return;}//not an error
+            if(i<1){; return;}//not an error
             while(i-->0){
                 System.out.print("Enter Day Number: ");
                 int day = sc.nextInt();
@@ -115,7 +115,7 @@ public class Hospital {
             }
 
         } catch (Exception e) {
-            sc.nextLine();
+            ;
             System.out.println("Error occured");
             return;
         }
@@ -218,7 +218,7 @@ public class Hospital {
         try {
             System.out.print("Enter Hospital Id: ");
             char[] huid = sc.next().toCharArray();
-            sc.nextLine();//clear stdin
+            ;//clear stdin
             Hospital hospital = search_by_huid(hospitals, huid);
             if(hospital==null){System.out.println("Hospital not found"); return;}
             for(Slot i : hospital.slots){

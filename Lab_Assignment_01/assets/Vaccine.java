@@ -33,11 +33,11 @@ public class Vaccine {
                 System.out.print("Gap between Doses: ");
                 gap_doses = sc.nextInt();
             }
-            sc.nextLine(); //clear stdin
+            ; //clear stdin
             //sc.close();
             newvaccine = new Vaccine(name, num_doses, gap_doses);
         } catch (Exception e) {
-            sc.nextLine();//clear stdin
+            ;//clear stdin
             System.out.println("Exception Occured/ Invalid input");
             return;
         }
