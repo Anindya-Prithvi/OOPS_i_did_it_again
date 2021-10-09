@@ -164,6 +164,47 @@ public class Hospital {
         return slot_choice;
     }
 
+    public static Slot search_by_vaccine(ArrayList<Hospital> hospitals, java.util.Scanner sc){
+        // Enter Vaccine name: Covax
+        // 123456 Medistar
+        // 111111 HealthCenter
+        // Enter hospital id: 123456
+        // No slots available
+        // Choose Slot: 0
+
+        System.out.print("Enter Vaccine name: ");
+        String vaccine_name = sc.next();
+        ArrayList<Slot> available = new ArrayList<Slot>();
+        for(Hospital j: hospitals){
+            for(Slot k: j.slots){
+                if((k.getVaccine().equals(vaccine_name))){
+                    available.add(k);
+                }
+            }
+        }
+        for(Slot j: available){
+            System.out.println(j.getHospital_id()+" "+new String(search_by_huid(hospitals, j.getHospital_id().toCharArray()).name));
+        }
+        System.out.print("Enter Hospital ID: ");
+        char[] huid = sc.next().toCharArray();
+        Hospital vaccine_camp = search_by_huid(hospitals, huid);
+        if(vaccine_camp==null){return null;}
+        if(vaccine_camp.slots.size()==0){System.out.println("No slots available");return null;}
+        int num=0;
+        int fallback=0;
+        for(Slot j: vaccine_camp.slots){
+            if(j.getVaccine().equals(vaccine_name)) {
+                System.out.print(num+"-> "); j.show_slot_by_huid(); ++fallback;
+            }
+            num++;
+        }
+        if(fallback==0){System.out.println("No slots available"); return null;}
+        System.out.print("Choose Slot: ");
+        Slot slot_choice = vaccine_camp.slots.get(sc.nextInt());
+        if(slot_choice.getAvailable_quantity()==0){System.out.println("No vaccines left"); return null;}
+        return slot_choice;
+    }
+
     public static void list_slots(ArrayList<Hospital> hospitals, java.util.Scanner sc){
         // Enter Hospital Id: 123456
         // Day: 1 Vaccine: Covax Available Qty: 5

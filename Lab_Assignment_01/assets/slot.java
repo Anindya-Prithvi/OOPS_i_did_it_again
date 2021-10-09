@@ -21,9 +21,9 @@ public class Slot {
         return day;
     }
 
-    // public String getVaccine() {
-    //     return vaccine.getName();
-    // }
+    public String getVaccine() {
+        return vaccine.getName();
+    }
 
     public void used_vaccine(Citizen citizen) {
         // private String cvs = "REGISTERED"; //current vac status
@@ -45,9 +45,9 @@ public class Slot {
         return;
     }
 
-    // public char[] getHospital_id() {
-    //     return hospital_id;
-    // }
+    public String getHospital_id() {
+        return new String(hospital_id);
+    }
 
     public void show_slot(){
         //Slot added by Hospital 123456 for Day: 1, Available Quantity: 5 of Vaccine Covax

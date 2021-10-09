@@ -102,20 +102,40 @@ public class Citizen {
         ;
 
         try {
+            Slot booked;
             int choice = sc.nextInt();
-            if(choice==1){
-                Slot booked = Hospital.search_by_pin(hospitals, sc);
+            if((choice==1)||(choice==2)) {
+                booked = (choice==1)?Hospital.search_by_pin(hospitals, sc)
+                                    :Hospital.search_by_vaccine(hospitals, sc);
                 if(booked==null){System.out.println("No slot booked");sc.nextLine();return;}
-                if(booked.getDay()<patient.due){System.out.println("Not eligible for vaccine");sc.nextLine(); return;}
+                if(booked.getDay()<patient.due){
+                    System.out.println("Not eligible for vaccine");
+                    sc.nextLine(); 
+                    return;
+                }
+                if(!patient.cvs.equals("REGISTERED")){
+                    if(!patient.given.equals(booked.getVaccine())){
+                        System.out.println("No vaccine cocktails, pls");
+                        sc.nextLine();
+                        return;
+                    }
+                    if(patient.cvs.equals("FULLY VACCINATED")){
+                        System.out.println("Vaccine overdone disallowed:)");
+                        sc.nextLine();
+                        return;
+                    }
+                }
                 booked.used_vaccine(patient);
+                sc.nextLine();
                 choice = 3; //everything must come to an end
             }
-            if(choice==2){
-                //TODO:
-                choice = 3;
-            }
-            if(choice==3){
+            else if(choice==3){
                 sc.nextLine();
+                return;
+            }
+            else{
+                sc.nextLine();
+                System.out.println("Invalid choice, exiting");
                 return;
             }
         } catch (Exception e) {
@@ -166,7 +186,13 @@ public class Citizen {
             return;
         }
         // PARTIALLY VACCINATED
-        System.out.println(vaccination_status(patient));
+        if(patient.cvs.equals("PARTIALLY VACCINATED")){
+            System.out.println(vaccination_status(patient));
+        }
+        else{
+            System.out.println(patient.cvs);
+        }
+        return;
         // Vaccine Given: Covax
         // Number of Doses given: 1
         // Next Dose due date: 3
