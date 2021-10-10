@@ -1,20 +1,16 @@
 # the compiler: javac for java
-CC = javac
  
 # compiler flags:
-CFLAGS  = 
  
 # The build target 
-default_builder:
-	@echo -n "making ."
-	@rm -r COVIN
-	@$(CC) Lab_Assignment_01/*.java -d COVIN
-	@echo .
+default_builder: COVIN
 	@echo "done!!"
 	
-run COVIN:
-	@java -cp COVIN Lab_Assignment_01.COVIN
+COVIN: 
+	@javac -d COVIN Lab_Assignment_01/COVIN.java
+	
+run_COVIN: COVIN
+	@java -cp COVIN Lab_Assignment_01/COVIN
 
 clean:
-	@rm -rf *.class
-	#just empties the builds, nothing more
+	@rm -rf COVIN
