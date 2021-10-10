@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Citizen {
     //Each citizen can register themselves only once, and they must provide their name, age, and a unique ID.
-    private String name;
-    private int age;
+    private String name; //name can be changed so not final
+    private int age; //age will obviously change ahahahaha
     private final char[] uid;
     private String cvs = "REGISTERED"; //current vac status
     private String given = null; //vaccine name

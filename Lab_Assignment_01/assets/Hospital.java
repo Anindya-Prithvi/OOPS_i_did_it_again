@@ -9,7 +9,7 @@ public class Hospital {
     private final String name;
     private final char[] huid; //000000
 
-    private ArrayList<Slot> slots = new ArrayList<Slot>();
+    private final ArrayList<Slot> slots = new ArrayList<Slot>();
 
     public Hospital(char[] pincode, String name){
         this.pincode = pincode;

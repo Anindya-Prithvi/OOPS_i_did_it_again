@@ -8,8 +8,8 @@ import Lab_Assignment_01.assets.Hospital;
 import Lab_Assignment_01.assets.Citizen;
 
 public class COVIN{
-    private static final String endline = "--------------------------------\n";
-    private static final String menu = ""
+    private final String endline = "--------------------------------\n";
+    private final String menu = ""
         .concat(endline)
         .concat("1. Add Vaccine\n")
         .concat("2. Register Hospital\n")
@@ -20,26 +20,38 @@ public class COVIN{
         .concat("7. Check Vaccination Status\n")
         .concat("8. Exit\n")
         .concat(endline);
-    private static ArrayList<Vaccine> vaccines; //multiple instances of COVIN
-    private static ArrayList<Hospital> hospitals; //multiple instances of COVIN
-    private static ArrayList<Citizen> citizens; //multiple instances of COVIN
-    private static Scanner sc;
+    private final ArrayList<Vaccine> vaccines; //multiple instances of COVIN
+    private final ArrayList<Hospital> hospitals; //multiple instances of COVIN
+    private final ArrayList<Citizen> citizens; //multiple instances of COVIN
+    private final Scanner sc;
+
+    public COVIN(ArrayList<Vaccine> vaccines, ArrayList<Hospital> hospitals, ArrayList<Citizen> citizens, Scanner sc){
+        this.vaccines = vaccines;
+        this.hospitals = hospitals;
+        this.citizens = citizens;
+        this.sc = sc;
+        System.out.print("COVIN Portal Initialized...\n");
+    }
     public static void main(String[] args){
         //initialize portal
-        vaccines = new ArrayList<Vaccine>();
-        hospitals = new ArrayList<Hospital>();
-        citizens = new ArrayList<Citizen>();
-        sc = new Scanner(System.in);
-        System.out.print("COVIN Portal Initialized...\n");
+        COVIN instance = new COVIN(new ArrayList<Vaccine>(),
+                        new ArrayList<Hospital>(),
+                        new ArrayList<Citizen>(),
+                        new Scanner(System.in));
         //main loop
+        instance.event_loop();
+    }
+
+    public void event_loop(){//OTHER APPLICATIONS can just create the instance object and run the event loop
         while(true){
             System.out.print(menu);
             if(choice_handler(sc)) break;
         }
         sc.close();
+        return;
     }
 
-    private static boolean choice_handler(Scanner sc){
+    private boolean choice_handler(Scanner sc){
         String choice;
         try {
             choice = sc.nextLine();            
@@ -59,7 +71,7 @@ public class COVIN{
             System.out.println("Invalid choice");
             return false; //i.e. dont exit
         }
-        switch (_choice_int) {//resolution: All scanners passed to static ref
+        switch (_choice_int) {//resolution: All scanners passed to  ref
             case 1:
                 Vaccine.add_vaccine(vaccines, sc);
                 break;
