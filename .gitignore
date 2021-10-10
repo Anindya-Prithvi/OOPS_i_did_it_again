@@ -26,4 +26,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-COVIN/Lab_Assignment_01/test
+
+#just for demonstrating usability
+Lab_Assignment_01/makeanother.java
