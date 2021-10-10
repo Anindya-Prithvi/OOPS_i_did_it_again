@@ -20,24 +20,31 @@ public class COVIN{
         .concat("7. Check Vaccination Status\n")
         .concat("8. Exit\n")
         .concat(endline);
+    private final String portal_init = "COVIN Portal Initialized...\n";
     private final ArrayList<Vaccine> vaccines; //multiple instances of COVIN
     private final ArrayList<Hospital> hospitals; //multiple instances of COVIN
     private final ArrayList<Citizen> citizens; //multiple instances of COVIN
     private final Scanner sc;
 
     public COVIN(ArrayList<Vaccine> vaccines, ArrayList<Hospital> hospitals, ArrayList<Citizen> citizens, Scanner sc){
+        //if in future there is a vaccine/hospital db which needs to be integrated
         this.vaccines = vaccines;
         this.hospitals = hospitals;
         this.citizens = citizens;
         this.sc = sc;
-        System.out.print("COVIN Portal Initialized...\n");
+        System.out.print(portal_init);
     }
+
+    public COVIN(){
+        this(new ArrayList<Vaccine>()
+            ,new ArrayList<Hospital>()
+            ,new ArrayList<Citizen>()
+            ,new Scanner(System.in));
+    }
+
     public static void main(String[] args){
         //initialize portal
-        COVIN instance = new COVIN(new ArrayList<Vaccine>(),
-                        new ArrayList<Hospital>(),
-                        new ArrayList<Citizen>(),
-                        new Scanner(System.in));
+        COVIN instance = new COVIN();
         //main loop
         instance.event_loop();
     }
