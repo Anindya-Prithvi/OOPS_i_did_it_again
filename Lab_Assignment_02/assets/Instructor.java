@@ -3,18 +3,15 @@ package Lab_Assignment_02.assets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Instructor {
-    static int id_ctr = 0;
+public class Instructor {//assume instructors have name
 
-    private final int inst_id;
-    public Instructor(){
-        this.inst_id = id_ctr;
-
-        ++id_ctr;
+    private final String name;
+    public Instructor(String name){
+        this.name = name;
     }
     
-    public String getInst_id() {
-        return "I".concat(String.valueOf(inst_id));
+    public String getName() {
+        return this.name;
     }
 
     public void upload_lecmat(ArrayList<LectureMaterial> materials, Scanner sc){
@@ -24,11 +21,16 @@ public class Instructor {
         System.out.print(menu);
         final int choice = Integer.parseInt(sc.nextLine());
         if(choice==2){
+            // Enter topic of video: Lecture 1
+            // Enter filename of video: lecture1.mp4
+            System.out.print("Enter topic of video: ");
+            String topic = sc.nextLine();
+            System.out.print("Enter filename of video: ");
             String filename = sc.nextLine();
             if(filename.matches("(.*).mp4")){
                 //get time stamp
                 java.util.Date date=new java.util.Date();  
-                materials.add(new LectureVideo(filename, date));
+                materials.add(new LectureVideo(topic, filename, date));
             }
         }
         else if(choice==1){
@@ -51,7 +53,25 @@ public class Instructor {
         return;
     }
 
-    public void upload_asmnt(){
-        
+    public void upload_asmnt(ArrayList<Assessment> assessor, Scanner sc){
+        final String menu = "\n"
+                    .concat("1. Add Assignment\n")
+                    .concat("2. Add Quiz\n");
+        System.out.print(menu);
+        final int choice = Integer.parseInt(sc.nextLine());
+        if(choice==2){
+            System.out.print("Enter Quiz question: ");
+            String quiz_q = sc.nextLine();
+            assessor.add(new Quiz(quiz_q));
+        }
+        else if(choice==1){
+            System.out.print("Enter problem statement: ");
+            final String problem_a = sc.nextLine();
+            System.out.print("Enter max marks: ");
+            final int marks = Integer.parseInt(sc.nextLine());
+            assessor.add(new Assignment(marks, problem_a));
+        }
+        return;
+
     }
 }

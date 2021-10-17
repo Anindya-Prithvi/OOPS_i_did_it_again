@@ -8,7 +8,7 @@ public interface LectureMaterial {
 }
 
 class LectureVideo implements LectureMaterial{
-    public LectureVideo(String filename, Date date){
+    public LectureVideo(String topic, String filename, Date date){
         //construct Videos (error handle not req ahahah)
     }
 
