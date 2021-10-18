@@ -24,7 +24,12 @@ class Assignment implements ViewableMaterial, GradableMaterial{
 
     @Override
     public void view(){
-        System.out.println("Add logic to view");
+        // Assignment: Assignment 1 problem Max Marks: 5
+        System.out.println("Assignment: "
+            .concat(this.question)
+            .concat(" Max Marks: ")
+            .concat(String.valueOf(this.marks))        
+        );
     }
 
     @Override
@@ -71,7 +76,9 @@ class Quiz implements ViewableMaterial, GradableMaterial{
 
     @Override
     public void view(){
-        System.out.println("Add logic to view");
+        System.out.println("Question: "
+            .concat(this.question)
+        );
     }
 
     @Override

@@ -91,8 +91,9 @@ public class Instructor {//assume instructors have name
     public void closeasmnt(ArrayList<GradableMaterial> asmnts, Scanner sc){
         int itr = 0;
         for(GradableMaterial i: asmnts){
+            ++itr;
             if(i.isclosed()) continue;
-            ++itr; System.out.print("ID: "+itr+" ");
+            System.out.print("ID: "+itr+" ");
             ((ViewableMaterial) i).view();
         }
         if(itr==0){

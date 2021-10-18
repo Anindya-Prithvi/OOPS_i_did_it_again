@@ -39,7 +39,7 @@ public class Student {
     }
 
     public void submitasnm(ArrayList<GradableMaterial> asmnts, Scanner sc){
-        System.out.println("Pending Assignments");
+        System.out.println("Pending Assessments");
         int itr = 0;
         for(GradableMaterial i: asmnts){
             ++itr;
@@ -47,10 +47,15 @@ public class Student {
             System.out.print("ID: "+itr+" ");
             ((ViewableMaterial) i).view();
         }
+        if(itr==0) {
+            System.out.println("No Pending Assessments");
+            return;
+        }
         System.out.print("Enter ID of assessment: ");
         int choice = Integer.parseInt(sc.nextLine());
 
         GradableMaterial sub = asmnts.get(choice);
+        if(sub.isclosed()) return; //No bypassing ahahahaha lol
         sub.submit(this, sc);
         
     }
