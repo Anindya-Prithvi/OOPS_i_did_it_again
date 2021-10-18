@@ -76,4 +76,17 @@ public class Instructor {//assume instructors have name
         return;
 
     }
+
+    public void viewlm(ArrayList<ViewableMaterial> lecmats){
+        for(ViewableMaterial i: lecmats){
+            i.view();
+        }
+        return;
+    }
+
+    public void viewasnm(ArrayList<GradableMaterial> asmnts){
+        for(GradableMaterial i: asmnts){
+            ((ViewableMaterial) i).view();
+        }
+    }
 }

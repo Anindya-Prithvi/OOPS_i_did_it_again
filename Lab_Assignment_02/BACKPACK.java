@@ -5,10 +5,12 @@ import java.util.Scanner;
 
 import Lab_Assignment_02.assets.GradableMaterial;
 import Lab_Assignment_02.assets.Instructor;
+import Lab_Assignment_02.assets.Student;
 import Lab_Assignment_02.assets.ViewableMaterial;
 
 public class BACKPACK {
     private final ArrayList<Instructor> instructors;
+    private final ArrayList<Student> students;
     private final ArrayList<ViewableMaterial> lecmats;
     private final ArrayList<GradableMaterial> asmnts;
 
@@ -37,11 +39,14 @@ public class BACKPACK {
             .concat("2. Enter as student\n")
             .concat("3. Exit\n");
 
-    public BACKPACK(ArrayList<Instructor> instructors, ArrayList<ViewableMaterial> lecmats,
+    public BACKPACK(ArrayList<Instructor> instructors, 
+                    ArrayList<Student> students,
+                    ArrayList<ViewableMaterial> lecmats,
                     ArrayList<GradableMaterial> asmnts){
         this.instructors = instructors;
         this.lecmats = lecmats;
         this.asmnts = asmnts;
+        this.students = students;
     }
 
     public void choiceParser(){
@@ -67,7 +72,18 @@ public class BACKPACK {
             else if(login_as==2){
                 //login as student
                 //show student list
-                System.out.print(studentMenu);
+                System.out.println("Students: ");
+                int iterator_id = 0;
+                for(Student i: students){
+                    System.out.println(iterator_id+" - "+ i.getName());
+                    ++iterator_id;
+                }
+                Student inst = students.get(Integer.parseInt(sc.nextLine()));
+                while(true){
+                    boolean con = studentControls(inst, sc);
+                    if(con==false) break;
+                }
+
             }
             else if(login_as==3){
                 //exit
@@ -75,6 +91,43 @@ public class BACKPACK {
             }
         }
         return;
+    }
+
+    private boolean studentControls(Student st, Scanner sc){
+        System.out.println("Welcome "+st.getName());
+        System.out.print(studentMenu);
+        int choice = Integer.parseInt(sc.nextLine());
+        // 1. View lecture materials
+        // 2. View assessments
+        // 3. Submit assessment
+        // 4. View grades
+        // 5. View comments
+        // 6. Add comments
+        // 7. Logout
+        if(choice == 1){
+            st.viewlm(lecmats);
+            return true;
+        }
+        else if(choice == 2){
+            st.viewasnm(asmnts);
+            return true;
+        }
+        else if(choice == 3){
+            
+        }
+        else if(choice == 4){
+            
+        }
+        else if(choice == 5){
+            
+        }
+        else if(choice == 6){
+            
+        }
+        else if(choice == 7){
+            return false;            
+        }
+        return false;
     }
 
     private boolean instructorControls(Instructor inst, Scanner sc){
@@ -100,15 +153,11 @@ public class BACKPACK {
             return true;
         }
         else if(choice == 3){
-            for(ViewableMaterial i: lecmats){
-                i.view();
-            }
+            inst.viewlm(lecmats);
             return true;
         }
         else if(choice == 4){
-            for(GradableMaterial i: asmnts){
-                ((ViewableMaterial) i).view();
-            }
+            inst.viewasnm(asmnts);
             return true;
         }
         else if(choice == 5){
@@ -135,15 +184,22 @@ public class BACKPACK {
         // create object and call parser from that
         // choiceParser();
         ArrayList<Instructor> instructors = new ArrayList<Instructor>();
+        ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<ViewableMaterial> lecmats = new ArrayList<ViewableMaterial>();
         ArrayList<GradableMaterial> asmnts = new ArrayList<GradableMaterial>();
-        BACKPACK classroom = new BACKPACK(instructors, lecmats, asmnts);
+        BACKPACK classroom = new BACKPACK(instructors, students, lecmats, asmnts);
 
         //add some people (instructors)
         instructors.add(new Instructor("Tony Stark"));
         instructors.add(new Instructor("Bruce Banner"));
         instructors.add(new Instructor("Helen Cho"));
         instructors.add(new Instructor("Andrew N.G."));
+
+        students.add(new Student("Ben Tennyson"));
+        students.add(new Student("Ash Ketchum"));
+        students.add(new Student("Misty"));
+        students.add(new Student("Peter Parker"));
+
         classroom.choiceParser();        
         
     }
