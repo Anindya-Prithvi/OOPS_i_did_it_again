@@ -15,6 +15,7 @@ public class Instructor {//assume instructors have name
     }
 
     public void upload_lecmat(ArrayList<ViewableMaterial> materials, Scanner sc){
+        java.util.Date date=new java.util.Date();
         final String menu = ""
                     .concat("1. Add Lecture Slide\n")
                     .concat("2. Add Lecture Video\n");
@@ -28,9 +29,8 @@ public class Instructor {//assume instructors have name
             System.out.print("Enter filename of video: ");
             String filename = sc.nextLine();
             if(filename.matches("(.*).mp4")){
-                //get time stamp
-                java.util.Date date=new java.util.Date();  
-                materials.add(new LectureVideo(topic, filename, date));
+                //get time stamp  
+                materials.add(new LectureVideo(topic, filename, date, this));
             }
         }
         else if(choice==1){
@@ -46,10 +46,10 @@ public class Instructor {//assume instructors have name
             ArrayList<String> slides = new ArrayList<String>();
             System.out.println("Enter content of slides");
             for(int i=0; i<no_Slides; i++){
-                System.out.print("Content of slide "+i+": ");
+                System.out.print("Content of slide "+(i+1)+": ");
                 slides.add(sc.nextLine());
             }
-            materials.add(new LectureSlides(topic, slides));
+            materials.add(new LectureSlides(topic, slides, date, this));
         }
         return;
     }

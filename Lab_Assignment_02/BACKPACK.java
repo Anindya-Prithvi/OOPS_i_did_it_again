@@ -98,10 +98,16 @@ public class BACKPACK {
             return true;
         }
         else if(choice == 3){
-            
+            for(ViewableMaterial i: lecmats){
+                i.view();
+            }
+            return true;
         }
         else if(choice == 4){
-            
+            for(GradableMaterial i: asmnts){
+                ((ViewableMaterial) i).view();
+            }
+            return true;
         }
         else if(choice == 5){
             
