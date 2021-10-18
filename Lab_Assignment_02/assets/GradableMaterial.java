@@ -6,9 +6,11 @@ import java.util.Scanner;
 public interface GradableMaterial {
     public void submit(Student st, Scanner sc);
     public ArrayList<Submission> getSubmitters();
+    public boolean isclosed();
 }
 
 class Assignment implements ViewableMaterial, GradableMaterial{
+    private boolean closed = false;
     final int marks;
     final String question;
     final ArrayList<Submission> submitters;
@@ -29,7 +31,7 @@ class Assignment implements ViewableMaterial, GradableMaterial{
         System.out.print("Enter filename of Assignment: ");
         String submitted = sc.nextLine();
         if(submitted.matches("(.*).zip")){
-            Submission sb = new Submission(st, submitted);
+            Submission sb = new Submission(st, submitted, marks);
             submitters.add(sb);
         }
         else{
@@ -43,11 +45,17 @@ class Assignment implements ViewableMaterial, GradableMaterial{
         return this.submitters;
     }
 
+    @Override
+    public boolean isclosed(){
+        return this.closed;
+    }
+
 }
 
 class Quiz implements ViewableMaterial, GradableMaterial{
-    final int marks;
-    final String question;
+    private boolean closed = false;
+    private final int marks;
+    private final String question;
     final ArrayList<Submission> submitters;
     public Quiz(String ques){
         this.marks = 1;
@@ -64,13 +72,18 @@ class Quiz implements ViewableMaterial, GradableMaterial{
     public void submit(Student st, Scanner sc){
         System.out.print(this.question);
         String ans = sc.nextLine();
-        Submission sb = new Submission(st, ans);
+        Submission sb = new Submission(st, ans, marks);
         submitters.add(sb);
     }
 
     @Override
     public ArrayList<Submission> getSubmitters(){
         return this.submitters;
+    }
+
+    @Override
+    public boolean isclosed(){
+        return this.closed;
     }
 
 }
@@ -81,10 +94,12 @@ class Submission{
     private boolean isgraded = false;
     private Instructor grader = null;
     private int marks = 0;
+    private int max_marks;
 
-    public Submission(Student st, String filename){
+    public Submission(Student st, String filename, int max_marks){
         this.st = st;
         this.filename = filename;
+        this.max_marks = max_marks;
     }
 
     public boolean isGraded(){
@@ -105,6 +120,22 @@ class Submission{
             System.out.println("Graded by: ".concat(grader.getName()));
         }
 
+    }
+
+    public void grade(Instructor inst, Scanner sc){
+        this.grader = inst;
+        System.out.println("Submission: "+this.filename);
+        System.out.println("-------------------------------");
+        System.out.println("Max marks: "+this.max_marks);
+        System.out.print("Marks scored: ");
+        this.marks = Integer.parseInt(sc.nextLine());
+        this.isgraded = true;
+        // Submission: assign1_s0.zip
+        // -------------------------------
+        // Max Marks: 5
+        // Marks scored: 5
+        // Welcome I1
+        // {INSTRUCTOR MENU}
     }
     //filename
     //subn=mitter object

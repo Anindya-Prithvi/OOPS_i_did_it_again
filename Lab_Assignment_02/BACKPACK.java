@@ -162,7 +162,8 @@ public class BACKPACK {
             return true;
         }
         else if(choice == 5){
-            
+            inst.gradeAsmnt(asmnts, sc);
+            return true;
         }
         else if(choice == 6){
             

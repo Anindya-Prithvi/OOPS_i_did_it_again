@@ -37,7 +37,7 @@ public class Student {
         System.out.println("Pending Assignments");
         int itr = 0;
         for(GradableMaterial i: asmnts){
-            System.out.print("ID: "+itr);
+            System.out.print("ID: "+itr+" ");
             ((ViewableMaterial) i).view();
             ++itr;
         }

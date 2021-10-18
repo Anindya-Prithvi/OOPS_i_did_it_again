@@ -14,6 +14,17 @@ public class Instructor {//assume instructors have name
         return this.name;
     }
 
+    // INSTRUCTOR MENU
+    // 1. Add class material @
+    // 2. Add assessments @
+    // 3. View lecture materials @
+    // 4. View assessments @
+    // 5. Grade assessments @
+    // 6. Close assessment
+    // 7. View comments
+    // 8. Add comments
+    // 9. Logout
+
     public void upload_lecmat(ArrayList<ViewableMaterial> materials, Scanner sc){
         java.util.Date date=new java.util.Date();
         final String menu = ""
@@ -88,5 +99,39 @@ public class Instructor {//assume instructors have name
         for(GradableMaterial i: asmnts){
             ((ViewableMaterial) i).view();
         }
+    }
+
+    public void gradeAsmnt(ArrayList<GradableMaterial> asmnts, Scanner sc){
+        // List of assessments
+        // ID: 0 Assignment: Assignment 1 problem Max Marks: 5
+        // ID: 1 Question: Name a language which supports OOPS?
+        // Enter ID of assessment to view submissions: 0
+        // Choose ID from these ungraded submissions
+        // 0. S0
+        // 1. S1
+        System.out.println("List of assessments");
+        int itr = 0;
+        for(GradableMaterial i: asmnts){
+            System.out.print("ID: "+itr+ " ");
+            ((ViewableMaterial) i).view();
+            ++itr;
+        }
+        System.out.print("Enter ID of assessment to view submissions of: ");
+        int ases = Integer.parseInt(sc.nextLine());
+        GradableMaterial assesment = asmnts.get(ases);
+        if(assesment.getSubmitters().size()==0) {
+            System.out.println("No submissions left to grade");
+            return;
+        }
+        System.out.println("Choose ID from these ungraded submissions");
+        itr = 0;
+        for(Submission i: assesment.getSubmitters()){
+            ++itr;
+            if(i.isGraded()) continue;
+            System.out.println(itr+". "+i.submittedby().getName());
+        }
+        int choice = Integer.parseInt(sc.nextLine());
+        Submission sb = assesment.getSubmitters().get(choice);
+        sb.grade(this, sc);
     }
 }
