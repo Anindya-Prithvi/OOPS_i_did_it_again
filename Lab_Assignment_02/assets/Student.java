@@ -1,6 +1,7 @@
 package Lab_Assignment_02.assets;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Student {
     // 1. View lecture materials
@@ -30,6 +31,53 @@ public class Student {
         for(GradableMaterial i: asmnts){
             ((ViewableMaterial) i).view();
         }
+    }
+
+    public void submitasnm(ArrayList<GradableMaterial> asmnts, Scanner sc){
+        System.out.println("Pending Assignments");
+        int itr = 0;
+        for(GradableMaterial i: asmnts){
+            System.out.print("ID: "+itr);
+            ((ViewableMaterial) i).view();
+            ++itr;
+        }
+        System.out.print("Enter ID of assessment: ");
+        int choice = Integer.parseInt(sc.nextLine());
+
+        GradableMaterial sub = asmnts.get(choice);
+        sub.submit(this, sc);
+        
+    }
+
+    public void seegrades(ArrayList<GradableMaterial> asmnts){
+        System.out.println("Graded submissions");
+        for(GradableMaterial i: asmnts){
+            for(Submission sb: i.getSubmitters()){
+                if(sb.submittedby()==this){
+                    if(sb.isGraded()){
+                        sb.showscore();
+                    }
+                }
+            }
+        }
+        System.out.println("----------------");
+        System.out.println("Ungraded submissions");
+        for(GradableMaterial i: asmnts){
+            for(Submission sb: i.getSubmitters()){
+                if(sb.submittedby()==this){
+                    if(!sb.isGraded()){
+                        sb.showscore();
+                    }
+                }
+            }
+        }
+        // Graded submissions
+        // Submission: assign1_s0.zip
+        // Marks scored: 5
+        // Graded by: I1
+        // ----------------------------
+        // Ungraded submissions
+
     }
     
 }

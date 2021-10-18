@@ -113,7 +113,8 @@ public class BACKPACK {
             return true;
         }
         else if(choice == 3){
-            
+            st.submitasnm(asmnts, sc);
+            return true;            
         }
         else if(choice == 4){
             
