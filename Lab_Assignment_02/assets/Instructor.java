@@ -32,6 +32,7 @@ public class Instructor {//assume instructors have name
                 //get time stamp  
                 materials.add(new LectureVideo(topic, filename, date, this));
             }
+            else System.out.println("REJECTED (file format not mp4)");
         }
         else if(choice==1){
             // Enter topic of slides: Slide 1

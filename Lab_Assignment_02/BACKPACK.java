@@ -52,6 +52,7 @@ public class BACKPACK {
             if(login_as==1){
                 //login as inst
                 //show instructor list
+                System.out.println("Instructors: ");
                 int iterator_id = 0;
                 for(Instructor i: instructors){
                     System.out.println(iterator_id+" - "+ i.getName());
@@ -77,6 +78,7 @@ public class BACKPACK {
     }
 
     private boolean instructorControls(Instructor inst, Scanner sc){
+        System.out.println("Welcome "+inst.getName());
         System.out.print(instructorMenu);
         int choice = Integer.parseInt(sc.nextLine());
         // 1. Add class material

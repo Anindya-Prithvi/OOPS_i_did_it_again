@@ -30,7 +30,7 @@ class LectureVideo implements ViewableMaterial{
             .concat("Title of video: ").concat(this.topic).concat("\n")
             .concat("Video file: ").concat(this.filename).concat("\n")
             .concat("Date of upload: ").concat(date.toString()).concat("\n")
-            .concat("Uploaded by: ").concat(instructor.getName())
+            .concat("Uploaded by: ").concat(instructor.getName().concat("\n"))
         );
         return;
     }
@@ -57,7 +57,7 @@ class LectureSlides implements ViewableMaterial{
         // Number of slides: 2
         // Date of upload: Thu Oct 14 23:25:25 IST 2021
         // Uploaded by: I0
-        System.out.println("Title: ".concat(this.topic).concat("\n"));
+        System.out.println("Title: ".concat(this.topic));
         int i=1;
         for(String slide: slides){
             System.out.println("Slide "+i+":"+" "+slide);
@@ -65,7 +65,7 @@ class LectureSlides implements ViewableMaterial{
         }
         System.out.println("Number of slides: "+slides.size());
         System.out.println("Date of upload: ".concat(this.date.toString()));
-        System.out.println("Uploaded by: "+instructor.getName());
+        System.out.println("Uploaded by: "+instructor.getName().concat("\n"));
 
     }
 }
