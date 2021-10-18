@@ -41,7 +41,7 @@ class LectureSlides implements ViewableMaterial{
     final ArrayList<String> slides;
     final Instructor instructor;
     final Date date;
-    public LectureSlides(String topic, ArrayList<String> slides, Instructor instructor, Date date){
+    public LectureSlides(String topic, ArrayList<String> slides, Date date, Instructor instructor){
         //construct the slides
         this.topic = topic;
         this.slides = slides;
