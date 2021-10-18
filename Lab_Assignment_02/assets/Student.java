@@ -41,13 +41,18 @@ public class Student {
     public void submitasnm(ArrayList<GradableMaterial> asmnts, Scanner sc){
         System.out.println("Pending Assessments");
         int itr = 0;
+        int id_tr = 0;
         for(GradableMaterial i: asmnts){
             ++itr;
             if(i.isclosed()) continue;
-            System.out.print("ID: "+itr+" ");
+            boolean subm = false;
+            for(Submission j: i.getSubmitters()) if(j.submittedby()==this) subm = true;
+            if(!subm) ++id_tr;
+            else continue;
+            System.out.print("ID: "+(itr-1)+" ");
             ((ViewableMaterial) i).view();
         }
-        if(itr==0) {
+        if(id_tr==0) {
             System.out.println("No Pending Assessments");
             return;
         }
@@ -55,7 +60,10 @@ public class Student {
         int choice = Integer.parseInt(sc.nextLine());
 
         GradableMaterial sub = asmnts.get(choice);
-        if(sub.isclosed()) return; //No bypassing ahahahaha lol
+        if(sub.isclosed()) {
+            System.out.println("Very smart? LOL, submissions closed.");
+            return; //No bypassing ahahahaha lol
+        }
         sub.submit(this, sc);
         
     }

@@ -83,7 +83,7 @@ class Quiz implements ViewableMaterial, GradableMaterial{
 
     @Override
     public void submit(Student st, Scanner sc){
-        System.out.print(this.question);
+        System.out.print("Question: "+this.question+" ");
         String ans = sc.nextLine();
         Submission sb = new Submission(st, ans, marks);
         submitters.add(sb);

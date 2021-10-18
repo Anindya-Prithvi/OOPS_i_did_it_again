@@ -93,7 +93,7 @@ public class Instructor {//assume instructors have name
         for(GradableMaterial i: asmnts){
             ++itr;
             if(i.isclosed()) continue;
-            System.out.print("ID: "+itr+" ");
+            System.out.print("ID: "+(itr-1)+" ");
             ((ViewableMaterial) i).view();
         }
         if(itr==0){
@@ -115,9 +115,11 @@ public class Instructor {//assume instructors have name
     }
 
     public void viewasnm(ArrayList<GradableMaterial> asmnts){
-        for(GradableMaterial i: asmnts){
+        int itr = 0;
+        for(GradableMaterial i: asmnts){++itr;
             ((ViewableMaterial) i).view();
         }
+        if(itr==0) System.out.println("No Assessments uploaded");
     }
 
     public void gradeAsmnt(ArrayList<GradableMaterial> asmnts, Scanner sc){
@@ -135,6 +137,10 @@ public class Instructor {//assume instructors have name
             ((ViewableMaterial) i).view();
             ++itr;
         }
+        if(itr==0) {
+            System.out.println("...\nCould not find Assessments");
+            return;
+        }
         System.out.print("Enter ID of assessment to view submissions of: ");
         int ases = Integer.parseInt(sc.nextLine());
         GradableMaterial assesment = asmnts.get(ases);
@@ -143,7 +149,7 @@ public class Instructor {//assume instructors have name
             return;
         }
         System.out.println("Choose ID from these ungraded submissions");
-        itr = 0;
+        itr = -1;
         for(Submission i: assesment.getSubmitters()){
             ++itr;
             if(i.isGraded()) continue;
