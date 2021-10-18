@@ -3,6 +3,7 @@ package Lab_Assignment_02;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Lab_Assignment_02.assets.Comment;
 import Lab_Assignment_02.assets.GradableMaterial;
 import Lab_Assignment_02.assets.Instructor;
 import Lab_Assignment_02.assets.Student;
@@ -13,6 +14,7 @@ public class BACKPACK {
     private final ArrayList<Student> students;
     private final ArrayList<ViewableMaterial> lecmats;
     private final ArrayList<GradableMaterial> asmnts;
+    private final ArrayList<Comment> comments;
 
     private final static String instructorMenu = "INSTRUCTOR MENU\n"
         .concat("1. Add class material\n")
@@ -41,12 +43,14 @@ public class BACKPACK {
 
     public BACKPACK(ArrayList<Instructor> instructors, 
                     ArrayList<Student> students,
+                    ArrayList<Comment> comments,
                     ArrayList<ViewableMaterial> lecmats,
                     ArrayList<GradableMaterial> asmnts){
         this.instructors = instructors;
         this.lecmats = lecmats;
         this.asmnts = asmnts;
         this.students = students;
+        this.comments = comments;
     }
 
     public void choiceParser(){
@@ -117,13 +121,16 @@ public class BACKPACK {
             return true;            
         }
         else if(choice == 4){
-            
+            st.seegrades(asmnts);
+            return true;            
         }
         else if(choice == 5){
-            
+            st.viewcom(comments);
+            return true;            
         }
         else if(choice == 6){
-            
+            st.addcom(comments, sc);
+            return true;            
         }
         else if(choice == 7){
             return false;            
@@ -166,13 +173,16 @@ public class BACKPACK {
             return true;
         }
         else if(choice == 6){
-            
+            inst.closeasmnt(asmnts, sc);
+            return true;            
         }
         else if(choice == 7){
-            
+            inst.viewcom(comments);
+            return true;           
         }
         else if(choice == 8){
-            
+            inst.addcom(comments, sc);
+            return true;
         }
         else if(choice == 9){
             return false;            
@@ -189,7 +199,8 @@ public class BACKPACK {
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<ViewableMaterial> lecmats = new ArrayList<ViewableMaterial>();
         ArrayList<GradableMaterial> asmnts = new ArrayList<GradableMaterial>();
-        BACKPACK classroom = new BACKPACK(instructors, students, lecmats, asmnts);
+        ArrayList<Comment> comments = new ArrayList<Comment>();
+        BACKPACK classroom = new BACKPACK(instructors, students, comments, lecmats, asmnts);
 
         //add some people (instructors)
         instructors.add(new Instructor("Tony Stark"));

@@ -28,18 +28,24 @@ public class Student {
     }
 
     public void viewasnm(ArrayList<GradableMaterial> asmnts){
+        int itr = 0;
         for(GradableMaterial i: asmnts){
+            if(i.isclosed()) continue;
+            ++itr;
             ((ViewableMaterial) i).view();
         }
+        if(itr==0) System.out.println("No open assessments available");
+        return;
     }
 
     public void submitasnm(ArrayList<GradableMaterial> asmnts, Scanner sc){
         System.out.println("Pending Assignments");
         int itr = 0;
         for(GradableMaterial i: asmnts){
+            ++itr;
+            if(i.isclosed()) continue;
             System.out.print("ID: "+itr+" ");
             ((ViewableMaterial) i).view();
-            ++itr;
         }
         System.out.print("Enter ID of assessment: ");
         int choice = Integer.parseInt(sc.nextLine());
@@ -79,5 +85,18 @@ public class Student {
         // Ungraded submissions
 
     }
+
+    public void viewcom(ArrayList<Comment> comments){
+        for(Comment i: comments){
+            i.show();
+        }
+
+    }
     
+    public void addcom(ArrayList<Comment> comments, Scanner sc){
+        System.out.print("Enter comment: ");
+        final String comment = sc.nextLine();
+        final java.util.Date date=new java.util.Date();
+        comments.add(new Comment(comment, date));        
+    }
 }

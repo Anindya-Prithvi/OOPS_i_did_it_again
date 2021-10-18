@@ -7,6 +7,7 @@ public interface GradableMaterial {
     public void submit(Student st, Scanner sc);
     public ArrayList<Submission> getSubmitters();
     public boolean isclosed();
+    public void close();
 }
 
 class Assignment implements ViewableMaterial, GradableMaterial{
@@ -50,6 +51,11 @@ class Assignment implements ViewableMaterial, GradableMaterial{
         return this.closed;
     }
 
+    @Override
+    public void close(){
+        this.closed = true;
+    }
+
 }
 
 class Quiz implements ViewableMaterial, GradableMaterial{
@@ -84,6 +90,11 @@ class Quiz implements ViewableMaterial, GradableMaterial{
     @Override
     public boolean isclosed(){
         return this.closed;
+    }
+
+    @Override
+    public void close(){
+        this.closed = true;
     }
 
 }
@@ -137,10 +148,4 @@ class Submission{
         // Welcome I1
         // {INSTRUCTOR MENU}
     }
-    //filename
-    //subn=mitter object
-    //object 
-    //isgraded?
-    //what grade?
-    //who
 }

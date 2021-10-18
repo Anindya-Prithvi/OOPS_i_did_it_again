@@ -20,7 +20,7 @@ public class Instructor {//assume instructors have name
     // 3. View lecture materials @
     // 4. View assessments @
     // 5. Grade assessments @
-    // 6. Close assessment
+    // 6. Close assessment @
     // 7. View comments
     // 8. Add comments
     // 9. Logout
@@ -88,6 +88,24 @@ public class Instructor {//assume instructors have name
 
     }
 
+    public void closeasmnt(ArrayList<GradableMaterial> asmnts, Scanner sc){
+        int itr = 0;
+        for(GradableMaterial i: asmnts){
+            if(i.isclosed()) continue;
+            ++itr; System.out.print("ID: "+itr+" ");
+            ((ViewableMaterial) i).view();
+        }
+        if(itr==0){
+            System.out.println("No open assessments available");
+            return;
+        }
+        System.out.print("Enter id of assignment to close: ");
+        int choice = Integer.parseInt(sc.nextLine());
+        GradableMaterial mat = asmnts.get(choice);
+        mat.close();
+
+    }
+
     public void viewlm(ArrayList<ViewableMaterial> lecmats){
         for(ViewableMaterial i: lecmats){
             i.view();
@@ -133,5 +151,19 @@ public class Instructor {//assume instructors have name
         int choice = Integer.parseInt(sc.nextLine());
         Submission sb = assesment.getSubmitters().get(choice);
         sb.grade(this, sc);
+    }
+
+    public void viewcom(ArrayList<Comment> comments){
+        for(Comment i: comments){
+            i.show();
+        }
+
+    }
+    
+    public void addcom(ArrayList<Comment> comments, Scanner sc){
+        System.out.print("Enter comment: ");
+        final String comment = sc.nextLine();
+        final java.util.Date date=new java.util.Date();
+        comments.add(new Comment(comment, date));        
     }
 }
