@@ -3,11 +3,11 @@ package Lab_Assignment_02.assets;
 import java.util.ArrayList;
 import java.util.Date;
 
-public interface LectureMaterial {
+public interface ViewableMaterial {
     public void view();    
 }
 
-class LectureVideo implements LectureMaterial{
+class LectureVideo implements ViewableMaterial{
     public LectureVideo(String topic, String filename, Date date){
         //construct Videos (error handle not req ahahah)
     }
@@ -18,7 +18,7 @@ class LectureVideo implements LectureMaterial{
     }
 }
 
-class LectureSlides implements LectureMaterial{
+class LectureSlides implements ViewableMaterial{
     public LectureSlides(String topic, ArrayList<String> slides){
         //construct the slides
     }

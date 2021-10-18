@@ -14,7 +14,7 @@ public class Instructor {//assume instructors have name
         return this.name;
     }
 
-    public void upload_lecmat(ArrayList<LectureMaterial> materials, Scanner sc){
+    public void upload_lecmat(ArrayList<ViewableMaterial> materials, Scanner sc){
         final String menu = "\n"
                     .concat("1. Add Lecture Slide\n")
                     .concat("2. Add Lecture Video\n");
@@ -53,7 +53,7 @@ public class Instructor {//assume instructors have name
         return;
     }
 
-    public void upload_asmnt(ArrayList<Assessment> assessor, Scanner sc){
+    public void upload_asmnt(ArrayList<GradableMaterial> assessor, Scanner sc){
         final String menu = "\n"
                     .concat("1. Add Assignment\n")
                     .concat("2. Add Quiz\n");
