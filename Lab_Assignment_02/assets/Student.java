@@ -3,7 +3,7 @@ package Lab_Assignment_02.assets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Student {
+public final class Student {
     // 1. View lecture materials
     // 2. View assessments
     // 3. Submit assessment

@@ -6,7 +6,7 @@ public interface Comment {
     public void showcomment();
 }
 
-class Student_Com implements Comment{
+final class Student_Com implements Comment{
     private final String comment;
     private final Date date;
     private final Student commentor;
@@ -29,7 +29,7 @@ class Student_Com implements Comment{
     }
 }
 
-class Instructor_Com implements Comment{
+final class Instructor_Com implements Comment{
     private final String comment;
     private final Date date;
     private final Instructor commentor;

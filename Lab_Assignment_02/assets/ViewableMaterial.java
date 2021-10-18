@@ -7,11 +7,11 @@ public interface ViewableMaterial {
     public void view();    
 }
 
-class LectureVideo implements ViewableMaterial{
-    final String topic;
-    final String filename;
-    final Date date;
-    final Instructor instructor;
+final class LectureVideo implements ViewableMaterial{
+    private final String topic;
+    private final String filename;
+    private final Date date;
+    private final Instructor instructor;
     public LectureVideo(String topic, String filename, Date date, Instructor instructor){
         //construct Videos (error handle not req ahahah)
         this.topic = topic;
@@ -36,11 +36,11 @@ class LectureVideo implements ViewableMaterial{
     }
 }
 
-class LectureSlides implements ViewableMaterial{
-    final String topic;
-    final ArrayList<String> slides;
-    final Instructor instructor;
-    final Date date;
+final class LectureSlides implements ViewableMaterial{
+    private final String topic;
+    private final ArrayList<String> slides;
+    private final Instructor instructor;
+    private final Date date;
     public LectureSlides(String topic, ArrayList<String> slides, Date date, Instructor instructor){
         //construct the slides
         this.topic = topic;

@@ -9,7 +9,7 @@ import Lab_Assignment_02.assets.Instructor;
 import Lab_Assignment_02.assets.Student;
 import Lab_Assignment_02.assets.ViewableMaterial;
 
-public class BACKPACK {
+public final class BACKPACK {
     private final ArrayList<Instructor> instructors;
     private final ArrayList<Student> students;
     private final ArrayList<ViewableMaterial> lecmats;

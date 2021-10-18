@@ -10,12 +10,11 @@ public interface GradableMaterial {
     public void close();
 }
 
-class Assignment implements ViewableMaterial, GradableMaterial{
+final class Assignment implements ViewableMaterial, GradableMaterial{
     private boolean closed = false;
     final int marks;
     final String question;
     final ArrayList<Submission> submitters;
-    boolean isclosed = false;
     public Assignment(int marks, String problem){
         this.marks = marks;
         this.question = problem;
@@ -63,11 +62,11 @@ class Assignment implements ViewableMaterial, GradableMaterial{
 
 }
 
-class Quiz implements ViewableMaterial, GradableMaterial{
+final class Quiz implements ViewableMaterial, GradableMaterial{
     private boolean closed = false;
     private final int marks;
     private final String question;
-    final ArrayList<Submission> submitters;
+    private final ArrayList<Submission> submitters;
     public Quiz(String ques){
         this.marks = 1;
         this.question = ques;
@@ -112,7 +111,7 @@ class Submission{
     private boolean isgraded = false;
     private Instructor grader = null;
     private int marks = 0;
-    private int max_marks;
+    private final int max_marks;
 
     public Submission(Student st, String filename, int max_marks){
         this.st = st;
@@ -136,6 +135,9 @@ class Submission{
             System.out.println("Submission: ".concat(this.filename));
             System.out.println("Marks scored: ".concat(String.valueOf(marks)));
             System.out.println("Graded by: ".concat(grader.getName()));
+        }
+        else{
+            System.out.println("Submission: ".concat(this.filename));
         }
 
     }

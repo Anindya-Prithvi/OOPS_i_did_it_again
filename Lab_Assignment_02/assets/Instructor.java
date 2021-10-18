@@ -3,7 +3,7 @@ package Lab_Assignment_02.assets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Instructor {//assume instructors have name
+public final class Instructor {//assume instructors have name
 
     private final String name;
     public Instructor(String name){
@@ -21,9 +21,9 @@ public class Instructor {//assume instructors have name
     // 4. View assessments @
     // 5. Grade assessments @
     // 6. Close assessment @
-    // 7. View comments
-    // 8. Add comments
-    // 9. Logout
+    // 7. View comments @
+    // 8. Add comments @
+    // 9. Logout @
 
     public void upload_lecmat(ArrayList<ViewableMaterial> materials, Scanner sc){
         java.util.Date date=new java.util.Date();
