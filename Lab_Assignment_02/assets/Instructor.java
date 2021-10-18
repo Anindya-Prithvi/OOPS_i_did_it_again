@@ -155,7 +155,7 @@ public class Instructor {//assume instructors have name
 
     public void viewcom(ArrayList<Comment> comments){
         for(Comment i: comments){
-            i.show();
+            i.showcomment();
         }
 
     }
@@ -164,6 +164,6 @@ public class Instructor {//assume instructors have name
         System.out.print("Enter comment: ");
         final String comment = sc.nextLine();
         final java.util.Date date=new java.util.Date();
-        comments.add(new Comment(comment, date));        
+        comments.add(new Instructor_Com(comment, date, this));        
     }
 }
