@@ -15,7 +15,7 @@ public class Instructor {//assume instructors have name
     }
 
     public void upload_lecmat(ArrayList<ViewableMaterial> materials, Scanner sc){
-        final String menu = "\n"
+        final String menu = ""
                     .concat("1. Add Lecture Slide\n")
                     .concat("2. Add Lecture Video\n");
         System.out.print(menu);
@@ -41,6 +41,7 @@ public class Instructor {//assume instructors have name
             // Content of slide 2: Content 2
             System.out.print("Enter topic of slides: ");
             final String topic = sc.nextLine();
+            System.out.print("Enter number of slides: ");
             final int no_Slides = Integer.parseInt(sc.nextLine());
             ArrayList<String> slides = new ArrayList<String>();
             System.out.println("Enter content of slides");
@@ -54,7 +55,7 @@ public class Instructor {//assume instructors have name
     }
 
     public void upload_asmnt(ArrayList<GradableMaterial> assessor, Scanner sc){
-        final String menu = "\n"
+        final String menu = ""
                     .concat("1. Add Assignment\n")
                     .concat("2. Add Quiz\n");
         System.out.print(menu);
