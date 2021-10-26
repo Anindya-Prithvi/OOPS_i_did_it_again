@@ -1,4 +1,9 @@
 package Lab_Assignment_03;
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public abstract class Floor {
     protected int location;
@@ -33,6 +38,17 @@ final class Empty extends Floor {
 
 abstract class Snake extends Floor{
     void Sset_position(){//maybe play demote music
+        File fall = new File("./Lab_Assignment_03/assets/snake_bite.wav");
+
+        try{
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(fall);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        }
+        catch (Exception e){
+            System.out.println("File not found..");
+        }
 
     }
 }
@@ -70,7 +86,18 @@ final class KingKobra extends Snake{
 }
 
 abstract class Ladder extends Floor{
-    void Lset_position(){//maybe play promote
+    void Lset_position(){//maybe play promot
+        File fall = new File("./Lab_Assignment_03/assets/promote.wav");
+
+        try{
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(fall);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        }
+        catch (Exception e){
+            System.out.println("File not found..");
+        }
 
     }
 

@@ -1,8 +1,13 @@
 package Lab_Assignment_03;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public final class Game {
     private int points;
@@ -66,6 +71,8 @@ public final class Game {
             }
         }
         gameover();
+        System.out.println("Press Enter to exit");
+        sc.nextLine();
     }
 
     private void showgamestate() {
@@ -138,6 +145,18 @@ public final class Game {
             .concat(" points")
         );
         System.out.println("---------------------");
+        File fall = new File("./Lab_Assignment_03/assets/finish.wav");
+
+        try{
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(fall);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        }
+        catch (Exception e){
+            System.out.println("File not found..");
+        }
+
     }
 
     private void getTotalPoints() {
