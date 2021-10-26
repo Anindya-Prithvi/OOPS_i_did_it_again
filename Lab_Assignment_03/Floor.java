@@ -1,6 +1,10 @@
 package Lab_Assignment_03;
 
 public abstract class Floor {
+    protected int location;
+    public int getLocation() {
+        return location;
+    }
     protected void give_point(Game game, int dscore){
         game.add_points(dscore);
     }
@@ -15,6 +19,9 @@ public abstract class Floor {
 }
 
 class Empty extends Floor {
+    public Empty(int location){
+        this.location = location;
+    }
     private final String floor_name = "An Empty Floor";
     @Override
     protected void jump(Game game, Player player){
@@ -30,6 +37,9 @@ abstract class Snake extends Floor{
 }
 
 class NormalSnake extends Snake{
+    public NormalSnake(int location){
+        this.location = location;
+    }
 
     @Override
     void jump(Game game, Player player) {
@@ -40,6 +50,9 @@ class NormalSnake extends Snake{
 }
 
 class KingKobra extends Snake{
+    public KingKobra(int location){
+        this.location = location;
+    }
 
     @Override
     void jump(Game game, Player player) {
@@ -57,6 +70,9 @@ abstract class Ladder extends Floor{
 }
 
 class NormalLadder extends Ladder{
+    public NormalLadder(int location){
+        this.location = location;
+    }
 
     @Override
     void jump(Game game, Player player) {
@@ -67,6 +83,9 @@ class NormalLadder extends Ladder{
 }
 
 class Elevator extends Ladder{
+    public Elevator(int location){
+        this.location = location;
+    }
 
     @Override
     void jump(Game game, Player player) {
