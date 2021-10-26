@@ -12,13 +12,13 @@ public final class Game {
     static Scanner sc = new Scanner(System.in);
     Dice dice;
     public void add_points(int dscore){
-
+        this.points += dscore;
     }
     final Player player;
     public Game(){
         player = new Player(sc);
         dice = new Dice(2);
-
+        this.floors = new ArrayList<Floor>();
         floors.add(new Empty(0));
         floors.add(new Empty(1));
         floors.add(new Elevator(2));
@@ -50,28 +50,41 @@ public final class Game {
                     continue;
                 }
                 else if(dout==1){//start the game
+                    isstarted = true;
                     player.setPosition(floors.get(0));
                     floors.get(0).jump(this, player);
+                    player.positionV();
+                    getTotalPoints();
                     continue;
                 }
             }
-            int projected = player.getPosition().location + dout;
+            int projected = player.getPosition().getLocation() + dout;
             if(projected>13){
                 System.out.println("Player cannot move");
                 continue;
             }
-            getTotalPoints();
             Floor assigned = floors.get(projected);
             player.setPosition(assigned);
-            assigned.jump(this, player);
-            if(player.getPosition().location==13){
+            player.positionV();  
+            int dtravel = assigned.jump(this, player);
+            getTotalPoints(); 
+            if(dtravel!=0){
+                assigned = floors.get(dtravel);
+                player.setPosition(assigned);
+                dtravel = assigned.jump(this, player);
+                player.positionV();
+                getTotalPoints(); 
+
+            }
+            if(player.getPosition().getLocation()==13){
                 isfinished = true;
-            }   
+            }
         }
         gameover();
     }
 
     private void gameover() {
+        System.out.println("Game Over");
         System.out.println(player.getName()
             .concat(" accumulated ")
             .concat(String.valueOf(points))

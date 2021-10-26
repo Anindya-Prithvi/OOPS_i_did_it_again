@@ -6,6 +6,7 @@ public final class Player {
     private final String name;
     private Floor position;
     public Player(Scanner sc){
+        System.out.println("Enter the player name and hit enter");
         this.name = sc.nextLine();
     }
 
@@ -19,6 +20,10 @@ public final class Player {
 
     public String getName(){
         return name;
+    }
+
+    public void positionV(){
+        System.out.println("Player position Floor-".concat(String.valueOf(this.position.getLocation())));
     }
     
 }
