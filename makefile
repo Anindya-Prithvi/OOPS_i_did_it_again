@@ -20,3 +20,4 @@ run_BACKPACK: BACKPACK
 
 clean:
 	@rm -rf COVIN
+	@rm -rf BACKPACK
