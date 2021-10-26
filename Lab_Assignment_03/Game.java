@@ -5,17 +5,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public final class Game {
-    int points;
-	ArrayList<Floor> floors; //14 floors
-	Boolean isstarted = false;
-	Boolean isfinished = false;
-    static Scanner sc = new Scanner(System.in);
-    Dice dice;
-    public void add_points(int dscore){
-        this.points += dscore;
-    }
-    final Player player;
+    private int points;
+	private ArrayList<Floor> floors; //14 floors
+	private Boolean isstarted = false;
+	private Boolean isfinished = false;
+    private final static Scanner sc = new Scanner(System.in);
+    private final Dice dice;
+    private final Player player;
+
     public Game(){
+        //set up game
         player = new Player(sc);
         dice = new Dice(2);
         this.floors = new ArrayList<Floor>();
@@ -37,50 +36,98 @@ public final class Game {
         player.setPosition(null);
     }
 
-    void play(){
+    protected void add_points(int dscore){
+        this.points += dscore;
+    }
+
+    private void play(){
         System.out.println("The game setup is ready");
         while(!isfinished){
-            System.out.println("Hit Enter to roll the dice");
-            sc.nextLine();
+            await_roll();
             dice.roll();
             int dout = dice.getFaceValue();
-            if(!isstarted){
-                if(dout==2){
-                    System.out.println("Game cannot start until you get 1");
-                    continue;
-                }
-                else if(dout==1){//start the game
-                    isstarted = true;
-                    player.setPosition(floors.get(0));
-                    floors.get(0).jump(this, player);
-                    player.positionV();
-                    getTotalPoints();
-                    continue;
-                }
+
+            if(!isstarted){//checks if game started, also mocks player
+                startmessageprompt(dout);
+                continue;
             }
+
             int projected = player.getPosition().getLocation() + dout;
-            if(projected>13){
+            if(projected>=floors.size()){
                 System.out.println("Player cannot move");
                 continue;
             }
-            Floor assigned = floors.get(projected);
-            player.setPosition(assigned);
-            player.positionV();  
-            int dtravel = assigned.jump(this, player);
-            getTotalPoints(); 
-            if(dtravel!=0){
-                assigned = floors.get(dtravel);
-                player.setPosition(assigned);
-                dtravel = assigned.jump(this, player);
-                player.positionV();
-                getTotalPoints(); 
 
-            }
+            moveplayer(projected);
+            showgamestate();
+            
             if(player.getPosition().getLocation()==13){
                 isfinished = true;
             }
         }
         gameover();
+    }
+
+    private void showgamestate() {
+        for(Floor i: floors){
+            if(i.getLocation()==player.getPosition().getLocation()){
+                System.out.print("####\t");
+            }
+            else{
+                System.out.print("----\t");
+            }
+        }
+        System.out.println();
+        for(Floor i: floors){
+            System.out.print(i.getLocation()+"\t");
+        }
+        System.out.println();
+        for(Floor i: floors){
+            if(i.getLocation()==player.getPosition().getLocation()){
+                System.out.print("####\t");
+            }
+            else{
+                System.out.print("----\t");
+            }
+        }
+        System.out.println();
+    }
+
+    private void moveplayer(int projected) {
+        Floor assigned = floors.get(projected);
+        player.setPosition(assigned);
+        player.positionV();  
+        int dtravel = assigned.jump(this, player);
+        getTotalPoints(); 
+        while(dtravel!=0){
+            showgamestate();
+            assigned = floors.get(dtravel);
+            player.setPosition(assigned);
+            dtravel = assigned.jump(this, player);
+            player.positionV();
+            getTotalPoints(); 
+        }
+    }
+
+    private void startmessageprompt(int dout) {
+        if(dout==2){
+            System.out.println("Game cannot start until you get 1");
+            return;
+        }
+        else if(dout==1){//start the game
+            isstarted = true;
+            player.setPosition(floors.get(0));
+            floors.get(0).jump(this, player);
+            player.positionV();
+            getTotalPoints();
+            showgamestate();
+            return;
+        }
+    }
+
+    private void await_roll() {
+        System.out.print("Hit Enter to roll the dice");//newline suppressor
+        sc.nextLine();
     }
 
     private void gameover() {
@@ -103,8 +150,8 @@ public final class Game {
     }
 }
 
-class Dice {
-    Random rand = new Random();
+final class Dice {
+    private final Random rand = new Random();
     private final int numFaces; //maximum face value
     private int faceValue;
     public Dice(int numFaces) {
