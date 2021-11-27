@@ -6,10 +6,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hop_n_win{
-    final static int max_hops = 5;
-    final static int max_tiles = 20;
-    static ArrayList<Tiles> tileCarpet;
-    final static String[] numberNames = {"zeroeth", "first", "second", "third", "fourth", "fifth"};
+    private final static int max_hops = 5;
+    private final static int max_tiles = 20;
+    private static ArrayList<Tiles> tileCarpet;
+    private final static String[] numberNames = {"zeroeth", "first", "second", "third", "fourth", "fifth"};
     public static void main(String[] args) {
         final Scanner sc = new Scanner(System.in);
         getReturn("Hit enter to initialize the game", sc);
@@ -64,7 +64,7 @@ public class Hop_n_win{
     }
 
     private static void getReturn(String message, Scanner sc){
-        System.out.println(message);
+        System.out.printf("%s",message);
         while(true){
             try{
                 sc.nextLine();
@@ -90,8 +90,8 @@ class GenCalc<T>{
 }
 
 class Player{
-    Random r1 = new Random();
-    final int cap = 5;
+    private final Random r1 = new Random();
+    private final int cap = 5;
     //you
     private int n_hops;
     private final ArrayList<SoftToy> bucket;
@@ -133,7 +133,7 @@ class SoftToy implements Cloneable{
 }
 
 class Tiles{
-    final SoftToy st;
+    private final SoftToy st;
     public Tiles(String nameOfToy){
         st = new SoftToy(nameOfToy);
     }
@@ -232,7 +232,7 @@ class Tiles{
             }
         }
         else{
-            throw new InvalidOptionException("not string or int");
+            throw new InvalidOptionException("Invalid option, please write string/integer");
         }
     }
 
