@@ -1,5 +1,7 @@
 package Lab_Assignment_04;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -15,12 +17,23 @@ public class Hop_n_win{
         getReturn("Hit enter to initialize the game", sc);
         Player noobie = new Player();
         GenCalc<Object> cc = new GenCalc<Object>();
-        initTileCarpet();
+        Boolean flag = true;
+        try{
+            initTileCarpet(20);
+        }
+        catch (FileNotFoundException e0){
+            System.err.println("This error is not recoverable, exiting. toyNames File was not found");
+            flag = false;
+        }
+        catch (NoSuchElementException e1){
+            System.err.println("toyNames File does not have enough entries. Error is not recoverable.");
+            flag = false;
+        }
 
         //Initialization over
         //Start main game logic
 
-        while(noobie.getHops()<max_hops){
+        while((noobie.getHops()<max_hops)&&flag){
             getReturn("Hit enter for your "
                     .concat(numberNames[noobie.getHops()+1])
                     .concat(" jump"), sc);
@@ -35,31 +48,17 @@ public class Hop_n_win{
         
         //Game finish
         sc.close();
-        noobie.toysWon(); //display toys
+        if(flag) noobie.toysWon(); //display toys
     }
-    private static void initTileCarpet(){
+    private static void initTileCarpet(int totalNum) throws FileNotFoundException, NoSuchElementException{
         tileCarpet = new ArrayList<Tiles>();
         //read from file
-        tileCarpet.add(new Tiles("Perman"));
-        tileCarpet.add(new Tiles("Doraemon"));
-        tileCarpet.add(new Tiles("Nobita"));
-        tileCarpet.add(new Tiles("Shizuka"));
-        tileCarpet.add(new Tiles("Kitretsu"));
-        tileCarpet.add(new Tiles("Thomas Engine"));
-        tileCarpet.add(new Tiles("Super Mario"));
-        tileCarpet.add(new Tiles("Power Rangers"));
-        tileCarpet.add(new Tiles("Pikachu"));
-        tileCarpet.add(new Tiles("Mocha Bear"));
-        tileCarpet.add(new Tiles("Chotta Bheem"));
-        tileCarpet.add(new Tiles("Tom"));
-        tileCarpet.add(new Tiles("Jerry"));
-        tileCarpet.add(new Tiles("Courage"));
-        tileCarpet.add(new Tiles("Ash"));
-        tileCarpet.add(new Tiles("Misty"));
-        tileCarpet.add(new Tiles("Captain America"));
-        tileCarpet.add(new Tiles("Thor"));
-        tileCarpet.add(new Tiles("Loki"));
-        tileCarpet.add(new Tiles("Sylvie"));
+        File toyNames = new File("./Lab_Assignment_04/assets/toyNames");
+        Scanner rfs = new Scanner(toyNames);
+        for(int i = 0; i<totalNum; i++){
+            tileCarpet.add(new Tiles(rfs.nextLine()));
+        }
+        rfs.close();
         System.out.println("Game is ready");
     }
 
@@ -71,7 +70,9 @@ public class Hop_n_win{
                 break;
             }
             catch(NoSuchElementException e1){
-                System.out.println("I assume pressing enter is tougher than adding NULL");
+                //can fix but unwanted resource leak
+                //it's the fault of the user.
+                System.out.println("I assume pressing enter is tougher than adding NULL. Restart program");
             }
         }
     }
@@ -153,7 +154,7 @@ class Tiles{
                     }
                 }
                 catch (NoSuchElementException e0){
-                    System.err.println("Please enter something.");
+                    System.out.println("I assume pressing enter is tougher than adding NULL. Restart program");
                 }
                 catch (InvalidOptionException e1){
                     System.err.println(e1.getMessage());
@@ -197,7 +198,7 @@ class Tiles{
                 } catch (NumberFormatException e1) {
                     System.out.println("Please enter an integer.");
                 } catch (NoSuchElementException e2){
-                    System.out.println("Please enter something.");
+                    System.out.println("I assume pressing enter is tougher than adding NULL. Restart program");
                 }
             }
             if(userRes == (Integer) cc.getCorrectAnswer(rand1, rand2)){
@@ -221,7 +222,7 @@ class Tiles{
                     receivedInput = sc.nextLine();
                     break;
                 } catch (NoSuchElementException e) {
-                    System.out.println("Please enter something");
+                    System.out.println("I assume pressing enter is tougher than adding NULL. Restart program");
                 }
             }
             if(receivedInput.equals(cc.getCorrectAnswer(rand1, rand2).toString())){
