@@ -6,16 +6,20 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hop_n_win{
-    static int max_hops = 5;
-    static int max_tiles = 20;
+    final static int max_hops = 5;
+    final static int max_tiles = 20;
     static ArrayList<Tiles> tileCarpet;
-    static String[] numberNames = {"zeroeth", "first", "second", "third", "fourth", "fifth"};
+    final static String[] numberNames = {"zeroeth", "first", "second", "third", "fourth", "fifth"};
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        final Scanner sc = new Scanner(System.in);
         getReturn("Hit enter to initialize the game", sc);
         Player noobie = new Player();
         GenCalc<Object> cc = new GenCalc<Object>();
         initTileCarpet();
+
+        //Initialization over
+        //Start main game logic
+
         while(noobie.getHops()<max_hops){
             getReturn("Hit enter for your "
                     .concat(numberNames[noobie.getHops()+1])
@@ -28,11 +32,14 @@ public class Hop_n_win{
                 tileCarpet.get(jumpLen-1).land(noobie, jumpLen, cc, sc);
             }
         }
+        
+        //Game finish
         sc.close();
-        noobie.toysWon();
+        noobie.toysWon(); //display toys
     }
     private static void initTileCarpet(){
         tileCarpet = new ArrayList<Tiles>();
+        //read from file
         tileCarpet.add(new Tiles("Perman"));
         tileCarpet.add(new Tiles("Doraemon"));
         tileCarpet.add(new Tiles("Nobita"));
@@ -55,6 +62,7 @@ public class Hop_n_win{
         tileCarpet.add(new Tiles("Sylvie"));
         System.out.println("Game is ready");
     }
+
     private static void getReturn(String message, Scanner sc){
         System.out.println(message);
         while(true){
@@ -70,16 +78,15 @@ public class Hop_n_win{
 }
 
 class GenCalc<T>{
-    public Object getCorrectAnswer(T first, T second){
+    public Object getCorrectAnswer(T first, T second) throws UnexpectedTypeException{
         if((first instanceof String)&&(second instanceof String)){
             return ((String) first).concat((String) second);
         }
         if((first instanceof Integer)&&(second instanceof Integer)){
             return ((Integer) first)/((Integer) second);
         }
-        return null;
+        throw new UnexpectedTypeException("Wrong usage of calc");
     }
-
 }
 
 class Player{
@@ -96,9 +103,11 @@ class Player{
         bucket.add(e);
     }
     public void toysWon(){
-        for(Object i: bucket){
-            System.out.println(i);
+        System.out.println("Soft toys won by you are:");
+        for(SoftToy i: bucket){
+            System.out.printf("%s, ",i.getToyName());
         }
+        System.out.println();//flush
     }
     public int getHops() {
         return n_hops;        
@@ -143,8 +152,14 @@ class Tiles{
                         break;
                     }
                 }
+                catch (NoSuchElementException e0){
+                    System.err.println("Please enter something.");
+                }
                 catch (InvalidOptionException e1){
                     System.err.println(e1.getMessage());
+                }
+                catch (UnexpectedTypeException e2){
+                    System.err.println("Terminate program and check arguments.");
                 }
             }
         }
@@ -226,8 +241,15 @@ class Tiles{
     }
 }
 
-class InvalidOptionException extends Exception{
+class InvalidOptionException extends RuntimeException{
     public InvalidOptionException(String message){
         super(message);
     }
+}
+
+class UnexpectedTypeException extends RuntimeException{
+    public UnexpectedTypeException(String message){
+        super(message);
+    }
+
 }
