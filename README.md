@@ -13,6 +13,11 @@
     - Shows progress in TUI.
     - Plays sounds when bit by Snake or taken a ladder.
     - Has an android version. [Download now](https://github.com/Anindya-Prithvi/my_AP_sem3/raw/main/Lab_Assignment_03/Snakes_Android.apk)
+
+4. Hop_n_win - Just hop and win (20 levels)
+    - Just press enter and solve small puzzles
+    - It's a carnival!
+    - May the randomness be with you!
 ___
 
 <p align="center">Submissions by: Anindya Prithvi, 2020024</p>
