@@ -3,7 +3,7 @@
 # compiler flags:
  
 # The build target 
-default_builder: COVIN BACKPACK GAME Hop_n_win
+default_builder: COVIN BACKPACK GAME Hop_n_win RT_Pascal
 	@echo "done!!"
 	
 COVIN: 
@@ -30,8 +30,15 @@ Hop_n_win:
 run_Hop_n_win: Hop_n_win
 	@java -cp Hop_n_win Lab_Assignment_04/Hop_n_win
 
+RT_Pascal:
+	@javac -d RT_Pascal Lab_Assignment_05/2020024.java
+
+run RT_Pascal:
+	@java -cp RT_Pascal Lab_Assignment_05/Pascal
+
 clean:
 	@rm -rf COVIN
 	@rm -rf BACKPACK
 	@rm -rf GAME
 	@rm -rf Hop_n_win
+	@rm -rf RT_Pascal

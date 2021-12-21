@@ -18,6 +18,10 @@
     - Just press enter and solve small puzzles
     - It's a carnival!
     - May the randomness be with you!
+
+5. Recursive ForkJoinPool(ed) implementation of Pascal's Triangle
+    - Achieved 300ms speedup by thresholding
+    - pass number of threads as a command line argument
 ___
 
 <p align="center">Submissions by: Anindya Prithvi, 2020024</p>
