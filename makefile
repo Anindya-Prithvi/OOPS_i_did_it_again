@@ -33,8 +33,9 @@ run_Hop_n_win: Hop_n_win
 RT_Pascal:
 	@javac -d RT_Pascal Lab_Assignment_05/2020024.java
 
-run RT_Pascal:
-	@java -cp RT_Pascal Lab_Assignment_05/Pascal
+run_RT_Pascal: RT_Pascal
+	@echo "You can even manually run it, just specify the threads [look at source file]"
+	@java -cp RT_Pascal Lab_Assignment_05/Pascal 10
 
 clean:
 	@rm -rf COVIN
